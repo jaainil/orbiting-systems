@@ -29,22 +29,24 @@ const Services = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent -z-10" />
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <span className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-semibold tracking-wide mb-6">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium">
               Our Expertise
             </span>
-            <h1 className="font-serif text-5xl font-medium leading-tight text-foreground md:text-6xl lg:text-7xl mb-8">
+            <h1 className="mt-8 font-serif text-5xl font-medium leading-tight text-foreground sm:text-6xl lg:text-7xl">
               Digital solutions that <br className="hidden md:block" />
-              <span className="text-primary">drive growth.</span>
+              <span className="italic text-muted-foreground">
+                drive growth.
+              </span>
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-10">
+            <p className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground leading-relaxed">
               We combine creativity with technical excellence to build products
               that transform businesses. From concept to launch, we are your
               partners in innovation.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="rounded-full px-8 text-lg h-12"
+                className="h-12 rounded-full px-8 text-base"
                 asChild
               >
                 <Link to="/contact">
@@ -54,7 +56,7 @@ const Services = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="rounded-full px-8 text-lg h-12"
+                className="h-12 rounded-full px-8 text-base"
                 asChild
               >
                 <a href="#capabilities">Explore Services</a>

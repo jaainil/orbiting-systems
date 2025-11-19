@@ -107,14 +107,16 @@ const Portfolio = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent -z-10" />
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <span className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-semibold tracking-wide mb-6">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium">
               Our Work
             </span>
-            <h1 className="font-serif text-5xl font-medium leading-tight text-foreground md:text-6xl lg:text-7xl mb-8">
+            <h1 className="mt-8 font-serif text-5xl font-medium leading-tight text-foreground sm:text-6xl lg:text-7xl">
               Selected projects & <br className="hidden md:block" />
-              <span className="text-primary">success stories.</span>
+              <span className="italic text-muted-foreground">
+                success stories.
+              </span>
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-10">
+            <p className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground leading-relaxed">
               Explore how we've helped businesses across various industries
               transform their digital presence and achieve their goals.
             </p>
