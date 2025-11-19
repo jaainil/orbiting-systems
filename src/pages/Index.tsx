@@ -13,6 +13,9 @@ import {
   Cloud,
   Database,
   LineChart,
+  Lightbulb,
+  Target,
+  TrendingUp,
 } from "lucide-react";
 import {
   Carousel,
@@ -32,45 +35,56 @@ const Index = () => {
         {/* Philosophy / Intro */}
         <section className="py-24 lg:py-32">
           <div className="container mx-auto px-6 lg:px-8">
-            <div className="grid gap-12 md:grid-cols-3">
-              <div className="space-y-4">
-                <div className="text-4xl font-serif text-primary/20 font-bold">
-                  01
+            <div className="mb-16 md:mb-24">
+              <span className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
+                Our Philosophy
+              </span>
+              <h2 className="mt-4 font-serif text-4xl font-medium text-foreground md:text-5xl">
+                Building for the Future
+              </h2>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-3">
+              {[
+                {
+                  number: "01",
+                  title: "Strategic Planning",
+                  desc: "We don't just build; we plan. Every project starts with a deep dive into your goals to ensure our solutions drive real business value.",
+                  icon: Lightbulb,
+                },
+                {
+                  number: "02",
+                  title: "Precise Execution",
+                  desc: "Our team of experts delivers pixel-perfect designs and robust code, ensuring your project is launched on time and within budget.",
+                  icon: Target,
+                },
+                {
+                  number: "03",
+                  title: "Continuous Growth",
+                  desc: "We build scalable systems that grow with you. From MVP to enterprise, we are your long-term partners in digital success.",
+                  icon: TrendingUp,
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="group relative p-8 rounded-3xl border bg-card/30 hover:bg-card transition-all duration-300 hover:shadow-lg"
+                >
+                  <div className="mb-6 flex items-center justify-between">
+                    <div className="text-4xl font-serif text-primary/20 font-bold group-hover:text-primary/40 transition-colors">
+                      {item.number}
+                    </div>
+                    <div className="flex size-12 items-center justify-center rounded-full bg-secondary text-primary group-hover:scale-110 transition-transform">
+                      <item.icon className="size-6" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-medium text-foreground mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
-                <h3 className="text-xl font-medium text-foreground">
-                  Strategic Planning
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  We don't just build; we plan. Every project starts with a deep
-                  dive into your goals to ensure our solutions drive real
-                  business value.
-                </p>
-              </div>
-              <div className="space-y-4">
-                <div className="text-4xl font-serif text-primary/20 font-bold">
-                  02
-                </div>
-                <h3 className="text-xl font-medium text-foreground">
-                  Precise Execution
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Our team of experts delivers pixel-perfect designs and robust
-                  code, ensuring your project is launched on time and within
-                  budget.
-                </p>
-              </div>
-              <div className="space-y-4">
-                <div className="text-4xl font-serif text-primary/20 font-bold">
-                  03
-                </div>
-                <h3 className="text-xl font-medium text-foreground">
-                  Continuous Growth
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  We build scalable systems that grow with you. From MVP to
-                  enterprise, we are your long-term partners in digital success.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </section>

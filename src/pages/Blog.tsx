@@ -56,7 +56,9 @@ const Blog = () => {
             </span>
             <h1 className="mt-8 font-serif text-5xl font-medium leading-tight text-foreground sm:text-6xl lg:text-7xl">
               Insights, updates, and <br className="hidden md:block" />
-              <span className="text-primary">expert opinions.</span>
+              <span className="italic text-muted-foreground">
+                expert opinions.
+              </span>
             </h1>
             <p className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground leading-relaxed">
               Stay informed with the latest trends in technology, design, and
