@@ -37,10 +37,10 @@ export const Navbar = () => {
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
+          <Link to="/" className="flex items-center space-x-3 group" aria-label="Aexaware Infotech Home">
             <img
               src={Logo}
-              alt="Aexaware Infotech"
+              alt="Aexaware Infotech Logo"
               className="h-8 w-auto transition group-hover:scale-[1.02]"
             />
           </Link>

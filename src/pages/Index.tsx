@@ -2,6 +2,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
+import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import {
@@ -28,6 +29,10 @@ import {
 const Index = () => {
   return (
     <div className="min-h-screen bg-background font-sans selection:bg-accent/20 selection:text-accent-foreground">
+      <SEO
+        title="Aexaware Infotech – Custom Web, Mobile & AI Solutions from Anand, Gujarat"
+        description="Aexaware Infotech builds scalable web, mobile, AI, and DevOps solutions for startups and enterprises – Made in Anand, Serving Globally."
+      />
       <Navbar />
       <Hero />
 
@@ -48,20 +53,20 @@ const Index = () => {
               {[
                 {
                   number: "01",
-                  title: "Strategic Planning",
-                  desc: "We don't just build; we plan. Every project starts with a deep dive into your goals to ensure our solutions drive real business value.",
+                  title: "Innovative",
+                  desc: "Always up to date with the latest web, mobile, AI, and DevOps trends.",
                   icon: Lightbulb,
                 },
                 {
                   number: "02",
-                  title: "Precise Execution",
-                  desc: "Our team of experts delivers pixel-perfect designs and robust code, ensuring your project is launched on time and within budget.",
+                  title: "Customer-Centric",
+                  desc: "Solutions are built around client goals, not generic templates.",
                   icon: Target,
                 },
                 {
                   number: "03",
-                  title: "Continuous Growth",
-                  desc: "We build scalable systems that grow with you. From MVP to enterprise, we are your long-term partners in digital success.",
+                  title: "Reliable",
+                  desc: "Scalable, secure, and delivered on time.",
                   icon: TrendingUp,
                 },
               ].map((item, i) => (
@@ -70,7 +75,7 @@ const Index = () => {
                   className="group relative p-8 rounded-3xl border bg-card/30 hover:bg-card transition-all duration-300 hover:shadow-lg"
                 >
                   <div className="mb-6 flex items-center justify-between">
-                    <div className="text-4xl font-serif text-primary/20 font-bold group-hover:text-primary/40 transition-colors">
+                    <div className="text-4xl font-serif text-primary/60 font-bold group-hover:text-primary transition-colors">
                       {item.number}
                     </div>
                     <div className="flex size-12 items-center justify-center rounded-full bg-secondary text-primary group-hover:scale-110 transition-transform">
@@ -120,13 +125,13 @@ const Index = () => {
                 },
                 {
                   icon: Cloud,
-                  title: "Cloud Solutions",
+                  title: "Cloud & DevOps",
                   desc: "Reliable cloud infrastructure and automated DevOps processes for better deployment and scalability.",
                 },
                 {
                   icon: Database,
-                  title: "Custom Software",
-                  desc: "Tailored software solutions to automate processes, improve efficiency, and solve complex business problems.",
+                  title: "AI/ML Integration",
+                  desc: "Data-driven decision making, predictive modelling, and AI-driven features.",
                 },
                 {
                   icon: LineChart,
@@ -152,7 +157,10 @@ const Index = () => {
                     className="p-0 h-auto text-primary hover:text-accent"
                     asChild
                   >
-                    <Link to="/services">
+                    <Link
+                      to="/services"
+                      aria-label={`Read more about ${service.title}`}
+                    >
                       Read More <ArrowRight className="ml-2 size-4" />
                     </Link>
                   </Button>
@@ -212,7 +220,7 @@ const Index = () => {
                   className="group flex flex-col gap-4 py-8 md:flex-row md:items-start md:justify-between transition-colors hover:bg-secondary/20 px-4 -mx-4 rounded-xl"
                 >
                   <div className="flex items-center gap-4">
-                    <span className="text-lg font-serif text-primary/40 font-bold">
+                    <span className="text-lg font-serif text-primary/70 font-bold">
                       0{i + 1}
                     </span>
                     <h3 className="text-2xl font-medium text-foreground group-hover:text-primary transition-colors">

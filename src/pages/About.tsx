@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
@@ -16,6 +17,10 @@ import {
 const About = () => {
   return (
     <div className="min-h-screen bg-background font-sans">
+      <SEO
+        title="About Aexaware Infotech – Trusted Innovation Partner"
+        description="Learn how Aexaware Infotech grew from Anand to a global digital agency delivering web, AI and app solutions."
+      />
       <Navbar />
 
       {/* Hero Section */}
@@ -34,10 +39,9 @@ const About = () => {
               </span>
             </h1>
             <p className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground leading-relaxed">
-              We are a full-service digital agency dedicated to helping
-              businesses grow in the digital world. From custom web design to
-              data-driven marketing, we provide end-to-end solutions that drive
-              real results.
+              Aexaware Infotech is a full-service digital agency that helps
+              startups and enterprises turn their ideas into scalable web,
+              mobile, AI/ML and UI/UX solutions.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -87,26 +91,26 @@ const About = () => {
               </h2>
               <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
                 <p>
-                  At Aexaware Infotech, strategic planning and precise execution
-                  are at the core of every solution we deliver. We understand
-                  that every business is unique, which is why we tailor our
-                  approach to meet your specific goals and challenges.
+                  At Aexaware Infotech, we emphasize a customer-centric
+                  approach, full-stack expertise, agile workflows, and
+                  end-to-end execution. We listen to clients first, tailor
+                  solutions to specific business challenges, and promise on-time
+                  delivery with transparent communication.
                 </p>
                 <p>
-                  We aren't just service providers; we are your digital growth
-                  partners. Whether it's crafting a stunning UI/UX, developing
-                  robust software, or executing a high-ROI digital marketing
-                  campaign, our team is dedicated to elevating your online
-                  presence.
+                  We aren't just service providers; we are your trusted IT
+                  innovation partners. Whether it's crafting a stunning UI/UX,
+                  developing robust software, or integrating AI/ML solutions,
+                  our team is dedicated to elevating your digital presence.
                 </p>
               </div>
 
               <div className="grid grid-cols-2 gap-6 pt-4">
                 {[
                   { icon: Globe, label: "Web Development" },
-                  { icon: Code2, label: "Software Solutions" },
+                  { icon: Code2, label: "AI/ML Integration" },
                   { icon: Users, label: "UI/UX Design" },
-                  { icon: BarChart3, label: "Digital Marketing" },
+                  { icon: BarChart3, label: "Cloud & DevOps" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-primary/10 text-primary">
@@ -141,17 +145,17 @@ const About = () => {
               {
                 icon: Target,
                 title: "Our Mission",
-                desc: "We deliver strategic, expertly crafted 360° digital solutions seamlessly executed to drive measurable ROI and ensure 100% client satisfaction.",
+                desc: "To help startups and enterprises turn their ideas into scalable web, mobile, AI/ML and UI/UX solutions.",
               },
               {
                 icon: Lightbulb,
                 title: "Our Vision",
-                desc: "To be the best result-oriented digital marketing agency known to empower businesses in achieving their goals through a holistic approach to brand marketing.",
+                desc: "To be a trusted IT innovation partner, empowering businesses globally with modern, scalable technology.",
               },
               {
                 icon: Rocket,
                 title: "Our Values",
-                desc: "Committed to delivering innovative, reliable & efficient digital solutions that empower businesses to grow, adapt & succeed in a rapidly changing modern world.",
+                desc: "Innovation, Customer-Centricity, Reliability, Integrity, and Agility.",
               },
             ].map((item, i) => (
               <div

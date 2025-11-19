@@ -1,6 +1,7 @@
 /* stylelint-disable */
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, ExternalLink } from "lucide-react";
@@ -100,6 +101,10 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-background font-sans">
+      <SEO
+        title="Portfolio – Aexaware Projects"
+        description="Explore Aexaware’s recent projects in web, mobile and AI development for global clients."
+      />
       <Navbar />
 
       {/* Hero Section */}

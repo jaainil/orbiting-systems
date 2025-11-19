@@ -25,13 +25,19 @@ export const Footer = () => {
             </p>
             <div className="space-y-2 text-muted-foreground">
               <p>Email: info@aexaware.com</p>
-              <p>Phone: +91 81407 34392</p>
+              <p>Phone: +91 98254 38119</p>
             </div>
             <div className="flex gap-4 pt-4">
-              {[Linkedin, Twitter, Github, Mail].map((Icon, i) => (
+              {[
+                { icon: Linkedin, label: "LinkedIn" },
+                { icon: Twitter, label: "Twitter" },
+                { icon: Github, label: "GitHub" },
+                { icon: Mail, label: "Email" },
+              ].map(({ icon: Icon, label }, i) => (
                 <a
                   key={i}
                   href="#"
+                  aria-label={label}
                   className="flex size-10 items-center justify-center rounded-full bg-secondary/50 text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                 >
                   <Icon size={18} />
@@ -41,9 +47,9 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-serif text-lg font-medium text-foreground mb-6">
+            <h3 className="font-serif text-lg font-medium text-foreground mb-6">
               Services
-            </h4>
+            </h3>
             <ul className="space-y-4">
               {[
                 "Web Development",
@@ -67,9 +73,9 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-serif text-lg font-medium text-foreground mb-6">
+            <h3 className="font-serif text-lg font-medium text-foreground mb-6">
               Company
-            </h4>
+            </h3>
             <ul className="space-y-4">
               {["About Us", "Portfolio", "Blog", "Contact"].map((item) => (
                 <li key={item}>
@@ -85,9 +91,9 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-serif text-lg font-medium text-foreground mb-6">
+            <h3 className="font-serif text-lg font-medium text-foreground mb-6">
               Join us
-            </h4>
+            </h3>
             <p className="text-muted-foreground mb-4">
               Looking for something else? Work with us.
             </p>
@@ -95,8 +101,8 @@ export const Footer = () => {
               <Link to="/contact">Apply Now</Link>
             </Button>
             <div className="mt-6 text-muted-foreground">
-              <p>+91 81407 34392</p>
-              <p>support@aexawareinfotech.com</p>
+              <p>+91 98254 38119</p>
+              <p>info@aexaware.com</p>
             </div>
           </div>
         </div>
@@ -104,7 +110,7 @@ export const Footer = () => {
         <div className="mt-24 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-border/40 pt-8 text-sm text-muted-foreground">
           <p>© 2025 / Aexaware infotech. All rights reserved.</p>
           <div className="flex gap-8">
-            <span>VADODARA/IND</span>
+            <span>ANAND/IND</span>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="hover:text-foreground transition-colors"

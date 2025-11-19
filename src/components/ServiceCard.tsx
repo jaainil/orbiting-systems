@@ -37,7 +37,7 @@ export const ServiceCard = ({
           </span>
         ) : Icon ? (
           <div className="flex size-14 items-center justify-center rounded-2xl border border-primary/30 bg-primary/10 text-primary">
-            <Icon className="size-7" />
+            <Icon className="size-7" aria-hidden="true" />
           </div>
         ) : (
           <span className="text-sm font-semibold uppercase tracking-[0.4em] text-primary/70">
@@ -52,10 +52,11 @@ export const ServiceCard = ({
 
       <Link
         to={link}
+        aria-label={`Discover more about ${title}`}
         className="mt-auto inline-flex items-center text-sm font-semibold text-primary transition group-hover:translate-x-1"
       >
         Discover more
-        <ArrowRight className="ml-2 size-4" />
+        <ArrowRight className="ml-2 size-4" aria-hidden="true" />
       </Link>
     </Card>
   );

@@ -1,6 +1,7 @@
 /* stylelint-disable */
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import {
@@ -22,6 +23,10 @@ import {
 const Services = () => {
   return (
     <div className="min-h-screen bg-background font-sans">
+      <SEO
+        title="Services – Aexaware Infotech"
+        description="Explore our comprehensive range of digital services including web development, mobile apps, AI/ML integration, and cloud solutions."
+      />
       <Navbar />
 
       {/* Hero Section */}
@@ -39,9 +44,9 @@ const Services = () => {
               </span>
             </h1>
             <p className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground leading-relaxed">
-              We combine creativity with technical excellence to build products
-              that transform businesses. From concept to launch, we are your
-              partners in innovation.
+              We provide custom web development, mobile-app development, UI/UX
+              design, cloud and DevOps support, custom software/ERP/CRM/SaaS
+              solutions, e-commerce development and AI/ML integration.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -49,7 +54,7 @@ const Services = () => {
                 className="h-12 rounded-full px-8 text-base"
                 asChild
               >
-                <Link to="/contact">
+                <Link to="/contact" aria-label="Start a project with us">
                   Start a Project <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
@@ -103,19 +108,19 @@ const Services = () => {
                 icon: Cloud,
                 title: "Cloud Solutions",
                 desc: "Secure and scalable cloud infrastructure setup, migration, and management services.",
-                tags: ["AWS", "Azure", "DevOps"],
+                tags: ["AWS", "Azure", "GCP", "Kubernetes"],
               },
               {
                 icon: Database,
-                title: "Custom Software",
-                desc: "Tailored software solutions to automate processes, improve efficiency, and solve complex business problems.",
-                tags: ["Node.js", "Python", "Enterprise"],
+                title: "AI/ML Integration",
+                desc: "Data-driven decision making, predictive modelling, recommendation engines, chatbot automation, and AI-driven features.",
+                tags: ["Python", "TensorFlow", "OpenAI"],
               },
               {
                 icon: LineChart,
-                title: "Digital Marketing",
-                desc: "Data-driven marketing strategies to increase brand visibility, traffic, and conversions.",
-                tags: ["SEO", "PPC", "Analytics"],
+                title: "E-commerce Development",
+                desc: "Secure online stores with payment integration, inventory management, and responsive design.",
+                tags: ["Shopify", "WooCommerce", "Custom"],
               },
             ].map((service, i) => (
               <div
@@ -123,7 +128,7 @@ const Services = () => {
                 className="group relative bg-background p-8 rounded-3xl border border-border/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="mb-6 inline-flex p-4 rounded-2xl bg-primary/5 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  <service.icon className="h-8 w-8" />
+                  <service.icon className="h-8 w-8" aria-hidden="true" />
                 </div>
                 <h3 className="text-2xl font-medium text-foreground mb-3">
                   {service.title}
@@ -182,7 +187,7 @@ const Services = () => {
                 ].map((item, i) => (
                   <div key={i} className="flex gap-4">
                     <div className="mt-1 p-1 rounded-full bg-primary/10 text-primary h-fit">
-                      <ArrowRight className="h-4 w-4" />
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
                     </div>
                     <div>
                       <h3 className="font-medium text-foreground text-lg">
@@ -200,19 +205,19 @@ const Services = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5" />
                 <div className="grid grid-cols-2 gap-4 p-8 h-full">
                   <div className="bg-background rounded-2xl shadow-sm p-6 flex flex-col justify-center items-center text-center">
-                    <Globe className="h-10 w-10 text-primary mb-4" />
+                    <Globe className="h-10 w-10 text-primary mb-4" aria-hidden="true" />
                     <span className="font-medium">Global Reach</span>
                   </div>
                   <div className="bg-background rounded-2xl shadow-sm p-6 flex flex-col justify-center items-center text-center mt-8">
-                    <ShieldCheck className="h-10 w-10 text-primary mb-4" />
+                    <ShieldCheck className="h-10 w-10 text-primary mb-4" aria-hidden="true" />
                     <span className="font-medium">Secure</span>
                   </div>
                   <div className="bg-background rounded-2xl shadow-sm p-6 flex flex-col justify-center items-center text-center -mt-8">
-                    <Zap className="h-10 w-10 text-primary mb-4" />
+                    <Zap className="h-10 w-10 text-primary mb-4" aria-hidden="true" />
                     <span className="font-medium">Fast</span>
                   </div>
                   <div className="bg-background rounded-2xl shadow-sm p-6 flex flex-col justify-center items-center text-center">
-                    <Layers className="h-10 w-10 text-primary mb-4" />
+                    <Layers className="h-10 w-10 text-primary mb-4" aria-hidden="true" />
                     <span className="font-medium">Scalable</span>
                   </div>
                 </div>
@@ -272,7 +277,7 @@ const Services = () => {
                 className="rounded-full px-10 h-14 text-lg"
                 asChild
               >
-                <Link to="/contact">Get a Free Quote</Link>
+                <Link to="/contact" aria-label="Get a free quote">Get a Free Quote</Link>
               </Button>
               <Button
                 variant="outline"

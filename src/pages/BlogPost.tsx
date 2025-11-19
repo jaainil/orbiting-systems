@@ -1,6 +1,7 @@
 /* stylelint-disable */
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { SEO } from "@/components/SEO";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, User } from "lucide-react";
@@ -43,6 +44,14 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-background font-sans">
+      {frontmatter && (
+        <SEO
+          title={frontmatter.title}
+          description={frontmatter.description || ""}
+          image={frontmatter.image}
+          type="article"
+        />
+      )}
       <Navbar />
 
       <article className="pt-32 pb-24 lg:pt-48 lg:pb-32">

@@ -1,6 +1,7 @@
 /* stylelint-disable */
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -45,6 +46,10 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-background font-sans">
+      <SEO
+        title="Contact Aexaware Infotech – Let’s Build Together"
+        description="Get in touch with Aexaware Infotech for custom web, mobile & AI solutions."
+      />
       <Navbar />
 
       <section className="pt-32 pb-16 lg:pt-48 lg:pb-24">
@@ -72,10 +77,10 @@ const Contact = () => {
                   <div>
                     <h3 className="font-medium text-foreground">Email</h3>
                     <a
-                      href="mailto:support@aexawareinfotech.com"
+                      href="mailto:info@aexaware.com"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
-                      support@aexawareinfotech.com
+                      info@aexaware.com
                     </a>
                   </div>
                 </div>
@@ -87,10 +92,10 @@ const Contact = () => {
                   <div>
                     <h3 className="font-medium text-foreground">Phone</h3>
                     <a
-                      href="tel:+918140734392"
+                      href="tel:+919825438119"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
-                      +91 81407 34392
+                      +91 98254 38119
                     </a>
                   </div>
                 </div>
@@ -102,8 +107,8 @@ const Contact = () => {
                   <div>
                     <h3 className="font-medium text-foreground">Address</h3>
                     <p className="text-muted-foreground max-w-xs">
-                      Office no 13, 3rd Floor Aarya’s landmark, Canal Ring Road,
-                      Sevasi Vadodara, Gujarat 391101
+                      C/O Monali Patel, Sahyog Society, Vasad, Anand, Gujarat
+                      388306
                     </p>
                   </div>
                 </div>

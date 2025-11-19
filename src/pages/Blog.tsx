@@ -1,6 +1,7 @@
 /* stylelint-disable */
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calendar, User } from "lucide-react";
@@ -44,6 +45,10 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-background font-sans">
+      <SEO
+        title="Aexaware Tech Blog – Web, Mobile & AI Insights"
+        description="Read Aexaware’s blogs on web development, AI, DevOps and digital innovation."
+      />
       <Navbar />
 
       {/* Hero Section */}
