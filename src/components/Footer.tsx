@@ -189,7 +189,7 @@ export const Footer = () => {
 
       {/* ASCII Art Background */}
       <div className="mt-12 w-full overflow-hidden flex justify-center opacity-30 pointer-events-none select-none bg-gradient-to-t from-muted/20 to-transparent">
-        <pre className="font-mono text-[1.2vw] leading-[1.2vw] whitespace-pre text-muted-foreground">
+        <pre className="font-mono text-[1.7vw] leading-[1.5vw] whitespace-pre text-muted-foreground">
           {asciiArt}
         </pre>
       </div>

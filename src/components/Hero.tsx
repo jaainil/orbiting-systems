@@ -23,11 +23,11 @@ export const Hero = () => {
           <div className="flex flex-col space-y-8">
             <div className="space-y-4">
               <h1 className="font-serif text-5xl font-bold leading-tight text-foreground sm:text-6xl lg:text-7xl tracking-tight">
-                Reliable <br />
-                Tech Power
+                Innovate. <br />
+                Build. Scale.
               </h1>
               <p className="max-w-lg text-lg text-muted-foreground leading-relaxed">
-                Empowering businesses with smart, secure, and scalable IT solutions.
+                Your trusted partner for scalable web, mobile, and AI solutions. Made in Anand, serving businesses globally.
               </p>
             </div>
 
@@ -38,11 +38,10 @@ export const Hero = () => {
               <div className="relative z-10">
                 <div className="mb-4 inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                   <Plus className="mr-1 h-3 w-3" />
-                  It Solution & Technology
+                  End-to-End Development
                 </div>
                 <p className="mb-6 text-sm text-muted-foreground">
-                  Transform your digital infrastructure with cutting-edge IT technology,
-                  tailored for efficiency, security, and scalability.
+                  Transform your vision into reality with secure, future-proof technology tailored to your growth.
                 </p>
                 <Button asChild className="w-full justify-between rounded-full" size="lg">
                   <Link to="/contact">
@@ -75,20 +74,15 @@ export const Hero = () => {
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/20 text-primary">
                     <Plus className="h-4 w-4" />
                   </div>
-                  <span className="text-sm font-semibold">AI TECHNOLOGY</span>
+                  <span className="text-sm font-semibold">AI Technology</span>
                </div>
             </div>
 
             {/* Testimonial Card */}
             <div className="absolute bottom-0 right-0 lg:-right-8 z-20 max-w-[260px] rounded-2xl border border-border/50 bg-card/90 p-5 shadow-xl backdrop-blur-md">
-               <div className="absolute -top-6 -right-6 flex h-16 w-16 items-center justify-center rounded-full border border-border bg-background text-xs font-bold uppercase tracking-widest text-primary shadow-sm rotate-12">
-                  <div className="text-center leading-tight text-[10px]">
-                     Success <br/> Brand <br/> With <br/> Demo
-                  </div>
-               </div>
                
                <p className="mt-2 text-sm text-muted-foreground">
-                 The team is professional, responsive, truly understands business needs.
+                 "Aexaware delivered a robust, secure platform that scales perfectly with our growth."
                </p>
                
                <div className="mt-4 flex items-center justify-between">
@@ -105,7 +99,7 @@ export const Hero = () => {
                            <Star key={i} className="h-3 w-3 fill-current" />
                         ))}
                      </div>
-                     <span className="text-[10px] font-medium text-muted-foreground">Google Reviews</span>
+                     <span className="text-[10px] font-medium text-muted-foreground">Client Feedback</span>
                   </div>
                </div>
             </div>

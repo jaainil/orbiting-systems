@@ -24,14 +24,26 @@ export const DrivingFuture = () => {
               <div className="relative bg-background rounded-full p-4 border border-border shadow-sm">
                 <div className="w-24 h-24 rounded-full border-2 border-dashed border-primary/30 flex items-center justify-center animate-[spin_10s_linear_infinite]">
                   <svg viewBox="0 0 100 100" className="w-full h-full">
-                    <path
-                      id="curve"
-                      d="M 50 50 m -37 0 a 37 37 0 1 1 74 0 a 37 37 0 1 1 -74 0"
-                      fill="transparent"
-                    />
+                    <defs>
+                      <path
+                        id="curve-top"
+                        d="M 15,50 A 35,35 0 1,1 85,50"
+                        fill="transparent"
+                      />
+                      <path
+                        id="curve-bottom"
+                        d="M 85,50 A 35,35 0 0,1 15,50"
+                        fill="transparent"
+                      />
+                    </defs>
                     <text className="text-[10px] uppercase tracking-widest fill-primary font-bold">
-                      <textPath href="#curve">
-                        Success Brand • Success Brand • Success Brand •
+                      <textPath href="#curve-top" startOffset="50%" textAnchor="middle">
+                        Made in Anand
+                      </textPath>
+                    </text>
+                    <text className="text-[10px] uppercase tracking-widest fill-primary font-bold" dy={5}>
+                      <textPath href="#curve-bottom" startOffset="50%" textAnchor="middle">
+                        Serving Globally
                       </textPath>
                     </text>
                   </svg>
@@ -43,16 +55,16 @@ export const DrivingFuture = () => {
             </div>
 
             <h2 className="text-4xl md:text-6xl font-serif font-bold leading-tight mb-6 text-foreground">
-              Driving The <br />
-              <span className="italic text-muted-foreground">Future</span>
+              Driving Digital <br />
+              <span className="italic text-muted-foreground">Growth</span>
             </h2>
             <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-              We help businesses grow by providing innovative IT solutions that
-              streamline operations and enhance user experiences.
+              We empower startups and enterprises with innovative web, mobile, and AI
+              solutions that streamline operations and deliver measurable results.
             </p>
             <Button asChild size="lg" className="rounded-full px-8 h-14 text-lg">
               <Link to="/contact">
-                Get Started <ArrowUpRight className="ml-2 h-5 w-5" />
+                Discover Our Solutions <ArrowUpRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           </div>
