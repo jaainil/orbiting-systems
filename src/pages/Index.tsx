@@ -3,21 +3,13 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { SEO } from "@/components/SEO";
+import { DrivingFuture } from "@/components/DrivingFuture";
+import { ServicesGrid } from "@/components/ServicesGrid";
+import { SmartSolutions } from "@/components/SmartSolutions";
+import { Industries } from "@/components/Industries";
+import { ProcessSteps } from "@/components/ProcessSteps";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Code2,
-  Smartphone,
-  Palette,
-  Cloud,
-  Database,
-  LineChart,
-  Lightbulb,
-  Target,
-  TrendingUp,
-} from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -37,207 +29,11 @@ const Index = () => {
       <Hero />
 
       <main>
-        {/* Philosophy / Intro */}
-        <section className="py-24 lg:py-32">
-          <div className="container mx-auto px-6 lg:px-8">
-            <div className="mb-16 md:mb-24">
-              <span className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
-                Our Philosophy
-              </span>
-              <h2 className="mt-4 font-serif text-4xl font-medium text-foreground md:text-5xl">
-                Building for the Future
-              </h2>
-            </div>
-
-            <div className="grid gap-8 md:grid-cols-3">
-              {[
-                {
-                  number: "01",
-                  title: "Innovative",
-                  desc: "Always up to date with the latest web, mobile, AI, and DevOps trends.",
-                  icon: Lightbulb,
-                },
-                {
-                  number: "02",
-                  title: "Customer-Centric",
-                  desc: "Solutions are built around client goals, not generic templates.",
-                  icon: Target,
-                },
-                {
-                  number: "03",
-                  title: "Reliable",
-                  desc: "Scalable, secure, and delivered on time.",
-                  icon: TrendingUp,
-                },
-              ].map((item, i) => (
-                <div
-                  key={i}
-                  className="group relative p-8 rounded-3xl border bg-card/30 hover:bg-card transition-all duration-300 hover:shadow-lg"
-                >
-                  <div className="mb-6 flex items-center justify-between">
-                    <div className="text-4xl font-serif text-primary/60 font-bold group-hover:text-primary transition-colors">
-                      {item.number}
-                    </div>
-                    <div className="flex size-12 items-center justify-center rounded-full bg-secondary text-primary group-hover:scale-110 transition-transform">
-                      <item.icon className="size-6" />
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-medium text-foreground mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Services - Editorial Layout */}
-        <section className="bg-secondary/30 py-24 lg:py-32">
-          <div className="container mx-auto px-6 lg:px-8">
-            <div className="mb-16 md:mb-24">
-              <span className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
-                What We Offer
-              </span>
-              <h2 className="mt-4 font-serif text-4xl font-medium text-foreground md:text-5xl">
-                IT Services That Drive Growth
-              </h2>
-            </div>
-
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {[
-                {
-                  icon: Code2,
-                  title: "Web Development",
-                  desc: "Custom websites and web apps built for performance, scalability, and seamless user experiences.",
-                },
-                {
-                  icon: Smartphone,
-                  title: "Mobile Apps",
-                  desc: "Native and cross-platform mobile apps that are fast, functional, and user-friendly.",
-                },
-                {
-                  icon: Palette,
-                  title: "UI/UX Design",
-                  desc: "Modern, intuitive interfaces focused on user experience, engagement, and conversion optimization.",
-                },
-                {
-                  icon: Cloud,
-                  title: "Cloud & DevOps",
-                  desc: "Reliable cloud infrastructure and automated DevOps processes for better deployment and scalability.",
-                },
-                {
-                  icon: Database,
-                  title: "AI/ML Integration",
-                  desc: "Data-driven decision making, predictive modelling, and AI-driven features.",
-                },
-                {
-                  icon: LineChart,
-                  title: "Digital Marketing",
-                  desc: "Data-driven marketing strategies to increase brand visibility, traffic, and conversions.",
-                },
-              ].map((service, i) => (
-                <div
-                  key={i}
-                  className="group relative overflow-hidden rounded-3xl bg-background p-8 transition-all hover:shadow-lg hover:-translate-y-1"
-                >
-                  <div className="mb-6 flex size-12 items-center justify-center rounded-2xl bg-secondary text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <service.icon className="size-6" />
-                  </div>
-                  <h3 className="mb-3 text-xl font-medium text-foreground">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4">
-                    {service.desc}
-                  </p>
-                  <Button
-                    variant="link"
-                    className="p-0 h-auto text-primary hover:text-accent"
-                    asChild
-                  >
-                    <Link
-                      to="/services"
-                      aria-label={`Read more about ${service.title}`}
-                    >
-                      Read More <ArrowRight className="ml-2 size-4" />
-                    </Link>
-                  </Button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Selected Work / Industries - List Layout */}
-        <section className="py-24 lg:py-32">
-          <div className="container mx-auto px-6 lg:px-8">
-            <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end mb-16">
-              <div>
-                <span className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
-                  Industries We Serve
-                </span>
-                <h2 className="mt-4 font-serif text-4xl font-medium text-foreground md:text-5xl">
-                  Solutions by Industry
-                </h2>
-              </div>
-              <Button variant="outline" className="rounded-full" asChild>
-                <Link to="/services">View all solutions</Link>
-              </Button>
-            </div>
-
-            <div className="divide-y divide-border">
-              {[
-                {
-                  name: "Health Care Tech",
-                  detail:
-                    "Custom EHR, EMR, and telemedicine solutions that simplify digital transformation for hospitals and clinics.",
-                },
-                {
-                  name: "EdTech Solutions",
-                  detail:
-                    "Scalable e-learning platforms and LMS that improve access and engagement for educators and students.",
-                },
-                {
-                  name: "Smart Logistics",
-                  detail:
-                    "Fleet tracking and supply chain software for faster, more efficient operations and route planning.",
-                },
-                {
-                  name: "E-Commerce & Retail",
-                  detail:
-                    "High-converting online stores and POS integrations that boost sales and enhance customer experiences.",
-                },
-                {
-                  name: "FinTech",
-                  detail:
-                    "Secure and robust financial platforms for banking, payments, and investment management.",
-                },
-              ].map((item, i) => (
-                <div
-                  key={i}
-                  className="group flex flex-col gap-4 py-8 md:flex-row md:items-start md:justify-between transition-colors hover:bg-secondary/20 px-4 -mx-4 rounded-xl"
-                >
-                  <div className="flex items-center gap-4">
-                    <span className="text-lg font-serif text-primary/70 font-bold">
-                      0{i + 1}
-                    </span>
-                    <h3 className="text-2xl font-medium text-foreground group-hover:text-primary transition-colors">
-                      {item.name}
-                    </h3>
-                  </div>
-                  <div className="flex items-start gap-4 md:gap-8 max-w-2xl">
-                    <p className="text-muted-foreground md:text-right leading-relaxed">
-                      {item.detail}
-                    </p>
-                    <ArrowUpRight className="size-5 text-muted-foreground opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-1 mt-1" />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <DrivingFuture />
+        <ServicesGrid />
+        <SmartSolutions />
+        <Industries />
+        <ProcessSteps />
 
         {/* Testimonials - Carousel */}
         <section className="bg-primary text-primary-foreground py-24 lg:py-32">
@@ -366,3 +162,4 @@ const Index = () => {
 };
 
 export default Index;
+
