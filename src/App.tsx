@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import ScrollToTop from "./components/ScrollToTop";
 import Loading from "./components/Loading";
+import { useSmoothScroll } from "./hooks/use-smooth-scroll";
 
 // Lazy load pages
 const Index = lazy(() => import("./pages/Index"));
@@ -28,40 +29,44 @@ const AiMlIntegration = lazy(() => import("./pages/AiMlIntegration"));
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <HelmetProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <ScrollToTop />
-          <Suspense fallback={<Loading />}>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/services/web-development" element={<WebDevelopment />} />
-              <Route path="/services/mobile-development" element={<MobileDevelopment />} />
-              <Route path="/services/ui-ux-design" element={<UiUxDesign />} />
-              <Route path="/services/software-solutions" element={<SoftwareSolutions />} />
-              <Route path="/services/ecommerce" element={<ECommerce />} />
-              <Route path="/services/cloud-devops" element={<CloudDevOps />} />
-              <Route path="/services/ai-ml-integration" element={<AiMlIntegration />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/about" element={<About />} />
-              {/* Placeholder routes */}
-              <Route path="/portfolio" element={<Portfolio />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:slug" element={<BlogPost />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
-      </TooltipProvider>
-    </HelmetProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  useSmoothScroll();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <HelmetProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <ScrollToTop />
+            <Suspense fallback={<Loading />}>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/services/web-development" element={<WebDevelopment />} />
+                <Route path="/services/mobile-development" element={<MobileDevelopment />} />
+                <Route path="/services/ui-ux-design" element={<UiUxDesign />} />
+                <Route path="/services/software-solutions" element={<SoftwareSolutions />} />
+                <Route path="/services/ecommerce" element={<ECommerce />} />
+                <Route path="/services/cloud-devops" element={<CloudDevOps />} />
+                <Route path="/services/ai-ml-integration" element={<AiMlIntegration />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/about" element={<About />} />
+                {/* Placeholder routes */}
+                <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </BrowserRouter>
+        </TooltipProvider>
+      </HelmetProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
 

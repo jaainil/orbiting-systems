@@ -18,6 +18,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+
 const Index = () => {
   return (
     <div className="min-h-screen bg-background font-sans selection:bg-accent/20 selection:text-accent-foreground">
@@ -38,7 +40,7 @@ const Index = () => {
         {/* Testimonials - Carousel */}
         <section className="bg-primary text-primary-foreground py-24 lg:py-32">
           <div className="container mx-auto px-6 lg:px-8">
-            <div className="mb-16 text-center">
+            <div ref={useScrollReveal({ animation: "fade-up" })} className="mb-16 text-center">
               <span className="text-sm font-semibold uppercase tracking-widest text-primary-foreground/60">
                 Testimonials
               </span>
@@ -47,7 +49,7 @@ const Index = () => {
               </h2>
             </div>
 
-            <div className="mx-auto max-w-5xl">
+            <div ref={useScrollReveal({ animation: "fade-up", delay: 0.2 })} className="mx-auto max-w-5xl">
               <Carousel
                 opts={{
                   align: "start",
@@ -86,7 +88,7 @@ const Index = () => {
                       key={i}
                       className="pl-4 md:basis-1/2 lg:basis-1/3"
                     >
-                      <div className="flex h-full flex-col justify-between rounded-3xl bg-primary-foreground/5 p-8 backdrop-blur-sm">
+                      <div className="flex h-full flex-col justify-between rounded-3xl bg-primary-foreground/5 p-8 backdrop-blur-sm hover:bg-primary-foreground/10 transition-colors duration-300">
                         <div>
                           <div className="mb-6 flex gap-1">
                             {[1, 2, 3, 4, 5].map((star) => (
@@ -129,10 +131,10 @@ const Index = () => {
         {/* CTA - Organic */}
         <section className="py-24 lg:py-32">
           <div className="container mx-auto px-6 lg:px-8">
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-secondary/50 px-6 py-24 text-center sm:px-16">
+            <div ref={useScrollReveal({ animation: "scale-up" })} className="relative overflow-hidden rounded-[2.5rem] bg-secondary/50 px-6 py-24 text-center sm:px-16">
               {/* Decorative blobs */}
-              <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-white blur-3xl opacity-60" />
-              <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-accent/20 blur-3xl opacity-60" />
+              <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-white blur-3xl opacity-60 animate-pulse" />
+              <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-accent/20 blur-3xl opacity-60 animate-pulse delay-700" />
 
               <div className="relative z-10 mx-auto max-w-2xl">
                 <h2 className="font-serif text-4xl font-medium text-foreground md:text-5xl">
@@ -144,7 +146,7 @@ const Index = () => {
                 <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
                   <Button
                     size="lg"
-                    className="h-14 rounded-full px-8 text-lg"
+                    className="h-14 rounded-full px-8 text-lg hover:scale-105 transition-transform duration-300"
                     asChild
                   >
                     <Link to="/contact">Get Free Consultation</Link>

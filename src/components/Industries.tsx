@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 export const Industries = () => {
   const industries = [
@@ -17,10 +18,12 @@ export const Industries = () => {
   const firstRow = industries.slice(0, Math.ceil(industries.length / 2));
   const secondRow = industries.slice(Math.ceil(industries.length / 2));
 
+  const headerRef = useScrollReveal({ animation: "fade-up" });
+
   return (
     <section className="py-24 bg-secondary/30 overflow-hidden">
       <div className="container mx-auto px-6 lg:px-8 mb-16">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div ref={headerRef} className="grid lg:grid-cols-2 gap-12 items-start">
           <h2 className="text-4xl md:text-5xl font-serif font-bold leading-tight text-foreground">
             Built for Business. <br />
             Across All Industries.

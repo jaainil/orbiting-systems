@@ -1,27 +1,42 @@
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useParallax } from "@/hooks/use-parallax";
+import { useRef } from "react";
 
 export const DrivingFuture = () => {
+  const containerRef = useRef<HTMLElement>(null);
+  
+  const leftImageRef = useScrollReveal({ animation: "fade-up", delay: 0.2 });
+  const rightImageRef = useScrollReveal({ animation: "fade-up", delay: 0.4 });
+  const contentRef = useScrollReveal({ animation: "fade-up", delay: 0.3 });
+  
+  // Parallax for images
+  const leftParallax = useParallax({ speed: -0.1, trigger: containerRef });
+  const rightParallax = useParallax({ speed: 0.1, trigger: containerRef });
+
   return (
-    <section className="py-24 overflow-hidden bg-background">
+    <section ref={containerRef} className="py-24 overflow-hidden bg-background">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-3 gap-8 items-center">
           {/* Left Image - Tilted */}
-          <div className="hidden lg:block relative h-[400px]">
-            <div className="absolute inset-0 bg-secondary/20 rounded-[3rem] transform -rotate-6"></div>
-            <img
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop"
-              alt="Modern Architecture"
-              loading="lazy"
-              width="400"
-              height="400"
-              className="absolute inset-0 w-full h-full object-cover rounded-[3rem] transform rotate-3 hover:rotate-0 transition-transform duration-500 shadow-lg"
-            />
+          <div ref={leftImageRef} className="hidden lg:block relative h-[400px]">
+            <div ref={leftParallax}>
+              <div className="absolute inset-0 bg-secondary/20 rounded-[3rem] transform -rotate-6"></div>
+              <img
+                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop"
+                alt="Modern Architecture"
+                loading="lazy"
+                width="400"
+                height="400"
+                className="absolute inset-0 w-full h-full object-cover rounded-[3rem] transform rotate-3 hover:rotate-0 transition-transform duration-500 shadow-lg"
+              />
+            </div>
           </div>
 
           {/* Center Content */}
-          <div className="text-center relative z-10">
+          <div ref={contentRef} className="text-center relative z-10">
             <div className="inline-flex items-center justify-center p-1 mb-8 relative">
               <div className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-primary opacity-20 blur-xl rounded-full animate-pulse"></div>
               <div className="relative bg-background rounded-full p-4 border border-border shadow-sm">
@@ -73,16 +88,18 @@ export const DrivingFuture = () => {
           </div>
 
           {/* Right Image - Tilted */}
-          <div className="hidden lg:block relative h-[400px]">
-            <div className="absolute inset-0 bg-secondary/20 rounded-[3rem] transform rotate-6"></div>
-            <img
-              src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1000&auto=format&fit=crop"
-              alt="Team Working"
-              loading="lazy"
-              width="400"
-              height="400"
-              className="absolute inset-0 w-full h-full object-cover rounded-[3rem] transform -rotate-3 hover:rotate-0 transition-transform duration-500 shadow-lg"
-            />
+          <div ref={rightImageRef} className="hidden lg:block relative h-[400px]">
+            <div ref={rightParallax}>
+              <div className="absolute inset-0 bg-secondary/20 rounded-[3rem] transform rotate-6"></div>
+              <img
+                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1000&auto=format&fit=crop"
+                alt="Team Working"
+                loading="lazy"
+                width="400"
+                height="400"
+                className="absolute inset-0 w-full h-full object-cover rounded-[3rem] transform -rotate-3 hover:rotate-0 transition-transform duration-500 shadow-lg"
+              />
+            </div>
           </div>
         </div>
       </div>

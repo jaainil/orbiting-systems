@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowUpRight, ChevronDown } from "lucide-react";
@@ -15,12 +17,32 @@ export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
+  const [isVisible, setIsVisible] = useState(true);
+
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const showAnim = gsap.from(navRef.current, { 
+      yPercent: -100,
+      paused: true,
+      duration: 0.3,
+      ease: "power3.out"
+    }).progress(1);
+
+    ScrollTrigger.create({
+      start: "top top",
+      end: "max",
+      onUpdate: (self) => {
+        setIsScrolled(self.scroll() > 20);
+        
+        // Show/Hide logic
+        if (self.direction === -1) {
+          showAnim.play();
+          setIsVisible(true);
+        } else if (self.direction === 1 && self.scroll() > 100) {
+          showAnim.reverse();
+          setIsVisible(false);
+        }
+      }
+    });
   }, []);
 
   const navLinks = [
@@ -45,11 +67,14 @@ export const Navbar = () => {
     { name: "Contact Us", path: "/contact" },
   ];
 
+  const navRef = useRef<HTMLElement>(null);
+
   return (
     <nav
+      ref={navRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled || isMobileMenuOpen
-          ? "bg-background/80 backdrop-blur-md border-b border-border/50"
+          ? "bg-background/80 backdrop-blur-md border-b border-border/50 shadow-sm"
           : "bg-transparent"
       }`}
     >

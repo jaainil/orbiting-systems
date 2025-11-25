@@ -1,15 +1,28 @@
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useParallax } from "@/hooks/use-parallax";
+import { useRef } from "react";
 
 export const SmartSolutions = () => {
+  const containerRef = useRef<HTMLElement>(null);
+  
+  const contentRef = useScrollReveal({ animation: "fade-up", delay: 0.2 });
+  const listRef = useScrollReveal({ animation: "fade-up", delay: 0.4 });
+  const buttonRef = useScrollReveal({ animation: "scale-up", delay: 0.6 });
+  
+  // Parallax for images
+  const image1Parallax = useParallax({ speed: -0.1, trigger: containerRef });
+  const image2Parallax = useParallax({ speed: 0.1, trigger: containerRef });
+
   return (
-    <section className="py-24 overflow-hidden bg-background">
+    <section ref={containerRef} className="py-24 overflow-hidden bg-background">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Images */}
           <div className="relative h-[600px] w-full hidden lg:block">
-            <div className="absolute top-0 left-0 w-[70%] h-[80%] rounded-[100px] overflow-hidden border-4 border-background shadow-2xl z-10">
+            <div ref={image1Parallax} className="absolute top-0 left-0 w-[70%] h-[80%] rounded-[100px] overflow-hidden border-4 border-background shadow-2xl z-10">
               <img
                 src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=1000&auto=format&fit=crop"
                 alt="IT Professional"
@@ -19,7 +32,7 @@ export const SmartSolutions = () => {
                 className="h-full w-full object-cover"
               />
             </div>
-            <div className="absolute bottom-0 right-0 w-[60%] h-[60%] rounded-[100px] overflow-hidden border-4 border-background shadow-2xl z-20">
+            <div ref={image2Parallax} className="absolute bottom-0 right-0 w-[60%] h-[60%] rounded-[100px] overflow-hidden border-4 border-background shadow-2xl z-20">
               <img
                 src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1000&auto=format&fit=crop"
                 alt="Team Collaboration"
@@ -33,17 +46,19 @@ export const SmartSolutions = () => {
 
           {/* Right Content */}
           <div>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold leading-tight mb-6 text-foreground">
-              Smart, Secure, & Scalable <br />
-              Solutions For It Technology
-            </h2>
-            <p className="text-muted-foreground mb-8 leading-relaxed">
-              We combine innovation with reliability to deliver IT solutions that
-              scale with your business. Our team brings deep technical expertise,
-              fast response times, and a commitment to security and performance.
-            </p>
+            <div ref={contentRef}>
+              <h2 className="text-4xl md:text-5xl font-serif font-bold leading-tight mb-6 text-foreground">
+                Smart, Secure, & Scalable <br />
+                Solutions For It Technology
+              </h2>
+              <p className="text-muted-foreground mb-8 leading-relaxed">
+                We combine innovation with reliability to deliver IT solutions that
+                scale with your business. Our team brings deep technical expertise,
+                fast response times, and a commitment to security and performance.
+              </p>
+            </div>
 
-            <div className="space-y-4 mb-10">
+            <div ref={listRef} className="space-y-4 mb-10">
               {[
                 "Experienced IT Professionals",
                 "Scalable Technology Stack",
@@ -57,11 +72,13 @@ export const SmartSolutions = () => {
               ))}
             </div>
 
-            <Button asChild className="rounded-full px-8 h-12">
-              <Link to="/contact">
-                Contact Us <ArrowUpRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+            <div ref={buttonRef}>
+              <Button asChild className="rounded-full px-8 h-12">
+                <Link to="/contact">
+                  Contact Us <ArrowUpRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </div>

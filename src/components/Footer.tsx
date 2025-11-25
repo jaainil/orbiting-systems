@@ -13,11 +13,15 @@ import {
 import Logo from "@/assets/logo 2.svg";
 import asciiArt from "@/assets/ascci.txt?raw";
 
+import { useRef } from "react";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const footerRef = useScrollReveal({ animation: "fade-up", delay: 0.2 });
 
   return (
-    <footer className="relative border-t border-border/40 bg-background pt-16 pb-8 md:pt-24 md:pb-12 overflow-hidden">
+    <footer ref={footerRef} className="relative border-t border-border/40 bg-background pt-16 pb-8 md:pt-24 md:pb-12 overflow-hidden">
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 mb-16">
           {/* Brand Section - Spans 4 columns */}

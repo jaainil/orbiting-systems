@@ -14,6 +14,18 @@ export const ProcessSteps = () => {
   useGSAP(() => {
     const steps = gsap.utils.toArray<HTMLElement>(".process-step");
     
+    // Animate Line
+    gsap.to(".timeline-line", {
+      scaleY: 1,
+      ease: "none",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top center",
+        end: "bottom center",
+        scrub: 1,
+      }
+    });
+
     steps.forEach((step, i) => {
       gsap.fromTo(step,
         { 
@@ -101,46 +113,53 @@ export const ProcessSteps = () => {
 
         {/* Vertical Timeline */}
         <div className="relative max-w-5xl mx-auto">
-          
+          {/* Central Line */}
+          <div className="absolute left-10 md:left-1/2 top-0 bottom-0 w-0.5 bg-blue-500/20 -translate-x-1/2 z-0">
+             <div className="absolute top-0 left-0 w-full bg-gradient-to-b from-blue-500 via-purple-500 to-blue-500 h-full origin-top scale-y-0 timeline-line" />
+          </div>
 
-          <div className="space-y-24">
+          <div className="space-y-24 relative z-10">
             {steps.map((step, i) => (
-              <div key={i} className={`process-step relative flex flex-col md:flex-row gap-8 md:gap-16 items-center ${i % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                
-                {/* Step Number Node */}
-                <div className="flex items-center justify-center w-20 h-20 rounded-full bg-slate-950 border border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.4)] z-10 group-hover:scale-110 transition-transform duration-300">
-                  <span className="text-2xl font-bold text-blue-400">{step.number}</span>
-                </div>
+              <div key={i} className="process-step relative">
+                <div className={`md:grid md:grid-cols-2 md:gap-0 items-center`}>
+                  
+                  {/* Step Number Node - Absolute Center */}
+                  <div className="absolute left-10 md:left-1/2 -translate-x-1/2 flex items-center justify-center w-20 h-20 rounded-full bg-slate-950 border border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.4)] z-20 group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-2xl font-bold text-blue-400">{step.number}</span>
+                    {/* Pulse effect */}
+                    <div className="absolute inset-0 rounded-full bg-blue-500/20 animate-ping opacity-0 group-hover:opacity-100" />
+                  </div>
 
-                {/* Content Card */}
-                <div className="w-full md:w-1/2 md:pl-0">
-                  <div className="group relative p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 hover:border-blue-500/30 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]">
-                    {/* Holographic Gradient Hover */}
-                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                    
-                    <div className="relative z-10">
+                  {/* Content Card */}
+                  <div className={`
+                    pl-24 md:pl-0 
+                    ${i % 2 === 0 ? 'md:col-start-1 md:pr-16 md:text-right' : 'md:col-start-2 md:pl-16 md:text-left'}
+                  `}>
+                    <div className="group relative p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 hover:border-blue-500/30 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]">
+                      {/* Holographic Gradient Hover */}
+                      <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                       
-                      <h3 className="text-2xl font-medium text-white mb-4 group-hover:text-blue-200 transition-colors">
-                        {step.title}
-                      </h3>
-                      <p className="text-slate-400 leading-relaxed mb-6 group-hover:text-slate-300 transition-colors">
-                        {step.desc}
-                      </p>
+                      <div className="relative z-10">
+                        <h3 className="text-2xl font-medium text-white mb-4 group-hover:text-blue-200 transition-colors">
+                          {step.title}
+                        </h3>
+                        <p className="text-slate-400 leading-relaxed mb-6 group-hover:text-slate-300 transition-colors">
+                          {step.desc}
+                        </p>
 
-                      <ul className="space-y-3">
-                        {step.features.map((feature, f) => (
-                          <li key={f} className="flex items-center gap-3 text-sm text-slate-300 group-hover:text-white transition-colors">
-                            <CheckCircle2 className="w-4 h-4 text-blue-400 group-hover:text-blue-300 group-hover:shadow-[0_0_10px_rgba(59,130,246,0.5)] rounded-full transition-all" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
+                        <ul className={`space-y-3 inline-block ${i % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
+                          {step.features.map((feature, f) => (
+                            <li key={f} className={`flex items-center gap-3 text-sm text-slate-300 group-hover:text-white transition-colors ${i % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+                              <CheckCircle2 className="w-4 h-4 text-blue-400 group-hover:text-blue-300 group-hover:shadow-[0_0_10px_rgba(59,130,246,0.5)] rounded-full transition-all" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Empty spacer for the other side */}
-                <div className="hidden md:block w-1/2" />
+                </div>
               </div>
             ))}
           </div>

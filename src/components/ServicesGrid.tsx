@@ -1,12 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight, Code, Smartphone, Cloud, Brain } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 export const ServicesGrid = () => {
+  const headerRef = useScrollReveal({ animation: "fade-up" });
+  
+  // Grid items
+  const col1Ref = useScrollReveal({ animation: "fade-up", delay: 0.2 });
+  const col2Ref = useScrollReveal({ animation: "scale-up", delay: 0.3 });
+  const col3Ref = useScrollReveal({ animation: "fade-up", delay: 0.4 });
+
   return (
     <section className="py-24 bg-secondary/20">
       <div className="container mx-auto px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+        <div ref={headerRef} className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
           <h2 className="text-4xl md:text-5xl font-serif font-bold leading-tight max-w-xl text-foreground">
             Scalable Solutions <br />
             for Every Stage
@@ -20,7 +28,7 @@ export const ServicesGrid = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-auto md:h-[600px]">
           {/* Column 1 */}
-          <div className="flex flex-col gap-6 h-full">
+          <div ref={col1Ref} className="flex flex-col gap-6 h-full">
             {/* Top Card (Large) */}
             <div className="flex-1 bg-card border border-border rounded-3xl p-8 flex flex-col justify-between group hover:shadow-lg transition-all">
               <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4">
@@ -49,7 +57,7 @@ export const ServicesGrid = () => {
           </div>
 
           {/* Column 2 (Center Image) */}
-          <div className="md:col-span-1 h-full">
+          <div ref={col2Ref} className="md:col-span-1 h-full">
             <div className="h-full w-full rounded-3xl overflow-hidden relative group border border-border">
               <img 
                 src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop" 
@@ -64,7 +72,7 @@ export const ServicesGrid = () => {
           </div>
 
           {/* Column 3 */}
-          <div className="flex flex-col gap-6 h-full">
+          <div ref={col3Ref} className="flex flex-col gap-6 h-full">
              {/* Top Card (Small) */}
              <div className="h-1/3 bg-secondary/50 rounded-3xl p-8 flex flex-col justify-center group hover:bg-secondary/70 transition-colors">
                <div className="h-10 w-10 rounded-full bg-background flex items-center justify-center mb-3 text-primary">
