@@ -1,0 +1,37 @@
+# Aexaware Infotech - Site Documentation for LLMs
+
+## Overview
+Aexaware Infotech is a software development company based in Anand, Gujarat, India. We specialize in building scalable web, mobile, AI, and DevOps solutions for startups and enterprises.
+
+## Core Services
+- **Web Development**: Custom web applications using React, Node.js, and modern frameworks.
+- **Mobile Development**: iOS and Android apps using React Native and Flutter.
+- **UI/UX Design**: User-centric design, prototyping, and wireframing.
+- **Software Solutions**: Enterprise resource planning (ERP), CRM, and custom software.
+- **E-Commerce**: Online store development using Shopify, WooCommerce, and custom solutions.
+- **Cloud & DevOps**: AWS, Azure, Google Cloud infrastructure, CI/CD pipelines, and containerization.
+- **AI & ML Integration**: Chatbots, predictive analytics, and process automation.
+
+## Key Technologies
+- **Frontend**: React, TypeScript, Tailwind CSS, Vite, Next.js
+- **Backend**: Node.js, Express, Python, Django
+- **Mobile**: React Native, Flutter
+- **Database**: PostgreSQL, MongoDB, MySQL
+- **DevOps**: Docker, Kubernetes, AWS, GitHub Actions
+
+## Contact Information
+- **Email**: info@aexaware.com
+- **Phone**: +91-98254-38119
+- **Location**: Anand, Gujarat, India
+- **Social Media**:
+  - Twitter: @Aexaware
+  - LinkedIn: /company/aexaware
+  - GitHub: @aexaware
+
+## Navigation Structure
+- `/`: Homepage
+- `/services`: Overview of all services
+- `/about`: Company history and mission
+- `/contact`: Contact form and details
+- `/portfolio`: Case studies and past projects
+- `/blog`: Tech articles and company news

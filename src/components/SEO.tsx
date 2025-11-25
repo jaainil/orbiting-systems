@@ -1,4 +1,3 @@
-/* stylelint-disable */
 import { Helmet } from "react-helmet-async";
 
 interface SEOProps {
@@ -8,7 +7,11 @@ interface SEOProps {
   type?: string;
   name?: string;
   image?: string;
-  structuredData?: Record<string, any>;
+  keywords?: string[];
+  noindex?: boolean;
+  author?: string;
+  twitterCreator?: string;
+  structuredData?: Record<string, unknown>;
 }
 
 export const SEO = ({
@@ -18,10 +21,14 @@ export const SEO = ({
   type = "website",
   name = "Aexaware Infotech",
   image = "/og-image.png",
+  keywords = [],
+  noindex = false,
+  author = "Aexaware Infotech",
+  twitterCreator = "@Aexaware",
   structuredData,
 }: SEOProps) => {
   const siteUrl = "https://aexaware.com";
-  const fullUrl = canonical ? `${siteUrl}${canonical}` : siteUrl;
+  const fullUrl = canonical ? (canonical.startsWith("http") ? canonical : `${siteUrl}${canonical}`) : siteUrl;
   const fullImage = image.startsWith("http") ? image : `${siteUrl}${image}`;
 
   return (
@@ -29,6 +36,9 @@ export const SEO = ({
       {/* Standard metadata */}
       <title>{title}</title>
       <meta name="description" content={description} />
+      <meta name="author" content={author} />
+      {keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
+      {noindex && <meta name="robots" content="noindex, nofollow" />}
       <link rel="canonical" href={fullUrl} />
 
       {/* Open Graph / Facebook */}
@@ -41,6 +51,8 @@ export const SEO = ({
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content={twitterCreator} />
+      <meta name="twitter:creator" content={twitterCreator} />
       <meta name="twitter:url" content={fullUrl} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
@@ -55,3 +67,4 @@ export const SEO = ({
     </Helmet>
   );
 };
+
