@@ -78,9 +78,9 @@ const About = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-8 -right-8 bg-primary text-primary-foreground p-8 rounded-3xl shadow-lg hidden md:block max-w-xs">
-                <p className="font-serif text-2xl font-medium mb-2">100%</p>
-                <p className="text-sm opacity-90">
+              <div className="absolute -bottom-8 -right-8 bg-primary p-8 rounded-3xl shadow-lg hidden md:block max-w-xs">
+                <p className="font-serif text-2xl font-medium mb-2 text-primary-foreground">100%</p>
+                <p className="text-sm opacity-90 text-primary-foreground">
                   Client Satisfaction Commitment
                 </p>
               </div>
@@ -185,7 +185,7 @@ const About = () => {
               <h2 className="font-serif text-4xl font-medium mb-6">
                 How We Work
               </h2>
-              <p className="text-lg opacity-90 leading-relaxed mb-8">
+              <p className="text-lg opacity-90 leading-relaxed mb-8 text-primary-foreground">
                 We believe in a transparent, collaborative process that keeps
                 you involved at every step. From the initial spark of an idea to
                 the final launch, we ensure precision and quality.
@@ -199,7 +199,7 @@ const About = () => {
                 <a href="/contact">Start Your Project</a>
               </Button>
             </div>
-            <div className="grid gap-6">
+            <div className="grid gap-8">
               {[
                 {
                   step: "01",
@@ -224,14 +224,14 @@ const About = () => {
               ].map((phase, i) => (
                 <div
                   key={i}
-                  className="flex gap-6 items-start p-6 rounded-2xl bg-white/10 border border-white/10 backdrop-blur-sm"
+                  className="flex gap-6 items-start p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors duration-300"
                 >
-                  <span className="text-3xl font-serif font-bold opacity-50">
+                  <span className="text-4xl font-serif font-bold opacity-30 text-white">
                     {phase.step}
                   </span>
                   <div>
-                    <h3 className="text-xl font-medium mb-2">{phase.title}</h3>
-                    <p className="opacity-80 text-sm leading-relaxed">
+                    <h3 className="text-xl font-medium mb-3 text-white">{phase.title}</h3>
+                    <p className="text-blue-100/90 text-base leading-relaxed">
                       {phase.desc}
                     </p>
                   </div>
