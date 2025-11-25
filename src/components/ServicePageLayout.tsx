@@ -44,9 +44,39 @@ export const ServicePageLayout = ({
   ctaTitle = "Looking for something else?",
   ctaDescription = "Work with us to build your dream project.",
 }: ServicePageLayoutProps) => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: title,
+    provider: {
+      "@type": "Organization",
+      name: "Aexaware Infotech",
+      url: "https://aexaware.com",
+    },
+    description: description,
+    areaServed: "Global",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: servicesTitle,
+      itemListElement: services.map((service, index) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: service.title,
+          description: service.desc,
+        },
+        position: index + 1,
+      })),
+    },
+  };
+
   return (
     <div className="min-h-screen bg-background font-sans selection:bg-primary/20 selection:text-primary">
-      <SEO title={`${title} – Aexaware Infotech`} description={description} />
+      <SEO
+        title={`${title} – Aexaware Infotech`}
+        description={description}
+        structuredData={schema}
+      />
       <Navbar />
 
       {/* Hero Section */}
@@ -165,10 +195,20 @@ export const ServicePageLayout = ({
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-foreground to-transparent z-10" />
 
           <div className="flex animate-marquee whitespace-nowrap gap-16 min-w-full items-center">
-            {[...techStack, ...techStack].map((tech, i) => (
+            {techStack.map((tech, i) => (
               <span
                 key={i}
                 className="text-4xl md:text-6xl font-bold text-white/10 hover:text-white/30 transition-colors cursor-default"
+              >
+                {tech}
+              </span>
+            ))}
+            {/* Duplicate for seamless loop - hidden from screen readers */}
+            {techStack.map((tech, i) => (
+              <span
+                key={`dup-${i}`}
+                className="text-4xl md:text-6xl font-bold text-white/10 hover:text-white/30 transition-colors cursor-default"
+                aria-hidden="true"
               >
                 {tech}
               </span>
