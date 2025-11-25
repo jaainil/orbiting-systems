@@ -91,41 +91,48 @@ const Services = () => {
                 title: "Web Development",
                 desc: "Custom websites and web applications built with modern frameworks for speed, scalability, and SEO.",
                 tags: ["React", "Next.js", "TypeScript"],
+                path: "/services/web-development",
               },
               {
                 icon: Smartphone,
                 title: "Mobile App Development",
                 desc: "Native and cross-platform mobile apps that deliver seamless user experiences on iOS and Android.",
                 tags: ["React Native", "Flutter", "iOS/Android"],
+                path: "/services/mobile-development",
               },
               {
                 icon: Palette,
                 title: "UI/UX Design",
                 desc: "User-centric design that blends aesthetics with functionality to create intuitive digital products.",
                 tags: ["Figma", "Prototyping", "User Research"],
+                path: "/services/ui-ux-design",
               },
               {
                 icon: Cloud,
                 title: "Cloud Solutions",
                 desc: "Secure and scalable cloud infrastructure setup, migration, and management services.",
                 tags: ["AWS", "Azure", "GCP", "Kubernetes"],
+                path: "/services/cloud-devops",
               },
               {
                 icon: Database,
                 title: "AI/ML Integration",
                 desc: "Data-driven decision making, predictive modelling, recommendation engines, chatbot automation, and AI-driven features.",
                 tags: ["Python", "TensorFlow", "OpenAI"],
+                path: "/services/ai-ml-integration",
               },
               {
                 icon: LineChart,
                 title: "E-commerce Development",
                 desc: "Secure online stores with payment integration, inventory management, and responsive design.",
                 tags: ["Shopify", "WooCommerce", "Custom"],
+                path: "/services/ecommerce",
               },
             ].map((service, i) => (
-              <div
+              <Link
+                to={service.path}
                 key={i}
-                className="group relative bg-background p-8 rounded-3xl border border-border/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                className="group relative bg-background p-8 rounded-3xl border border-border/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block"
               >
                 <div className="mb-6 inline-flex p-4 rounded-2xl bg-primary/5 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                   <service.icon className="h-8 w-8" aria-hidden="true" />
@@ -146,7 +153,7 @@ const Services = () => {
                     </span>
                   ))}
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

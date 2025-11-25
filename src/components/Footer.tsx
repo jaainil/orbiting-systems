@@ -65,22 +65,22 @@ export const Footer = () => {
             </h3>
             <ul className="space-y-3">
               {[
-                "Web Development",
-                "App Development",
-                "UI/UX Design",
-                "Software Solutions",
-                "E-com Development",
-                "Cloud & DevOps",
-                "AI/ML Integration",
+                { name: "Web Development", path: "/services/web-development" },
+                { name: "App Development", path: "/services/mobile-development" },
+                { name: "UI/UX Design", path: "/services/ui-ux-design" },
+                { name: "Software Solutions", path: "/services/software-solutions" },
+                { name: "E-com Development", path: "/services/ecommerce" },
+                { name: "Cloud & DevOps", path: "/services/cloud-devops" },
+                { name: "AI/ML Integration", path: "/services/ai-ml-integration" },
               ].map((item) => (
-                <li key={item}>
+                <li key={item.name}>
                   <Link
-                    to="/services"
+                    to={item.path}
                     className="group flex items-center text-muted-foreground hover:text-primary transition-colors text-sm"
                   >
                     <ArrowRight className="mr-2 h-3 w-3 opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
                     <span className="transition-transform group-hover:translate-x-1">
-                      {item}
+                      {item.name}
                     </span>
                   </Link>
                 </li>

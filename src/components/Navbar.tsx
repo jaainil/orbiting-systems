@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowUpRight, ChevronDown } from "lucide-react";
 import Logo from "@/assets/logo 2.svg";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,7 +26,20 @@ export const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
-    { name: "Services", path: "/services" },
+    {
+      name: "Services",
+      path: "/services",
+      dropdown: [
+        { name: "All Services", path: "/services" },
+        { name: "Web Development", path: "/services/web-development" },
+        { name: "Mobile App Development", path: "/services/mobile-development" },
+        { name: "UI/UX Design", path: "/services/ui-ux-design" },
+        { name: "Software Solutions", path: "/services/software-solutions" },
+        { name: "E-Commerce", path: "/services/ecommerce" },
+        { name: "Cloud & DevOps", path: "/services/cloud-devops" },
+        { name: "AI/ML Integration", path: "/services/ai-ml-integration" },
+      ],
+    },
     { name: "Pages", path: "/portfolio" }, // Mapping Pages to Portfolio for now as placeholder
     { name: "Blog", path: "/blog" },
     { name: "Contact Us", path: "/contact" },
@@ -48,19 +67,36 @@ export const Navbar = () => {
           {/* Desktop Navigation - Centered */}
           <div className="hidden md:flex items-center justify-center flex-1 px-8">
             <div className="flex items-center space-x-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`relative text-sm font-medium transition-colors hover:text-primary ${
-                    location.pathname === link.path
-                      ? "text-foreground font-semibold"
-                      : "text-muted-foreground"
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) =>
+                link.dropdown ? (
+                  <DropdownMenu key={link.name}>
+                    <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-colors outline-none">
+                      {link.name} <ChevronDown className="h-4 w-4" />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="center">
+                      {link.dropdown.map((item) => (
+                        <DropdownMenuItem key={item.path} asChild>
+                          <Link to={item.path} className="w-full cursor-pointer">
+                            {item.name}
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ) : (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={`relative text-sm font-medium transition-colors hover:text-primary ${
+                      location.pathname === link.path
+                        ? "text-foreground font-semibold"
+                        : "text-muted-foreground"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                )
+              )}
             </div>
           </div>
 
@@ -87,20 +123,42 @@ export const Navbar = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden py-6 border-t border-primary/20 animate-fade-in bg-background/95 backdrop-blur-sm absolute left-0 right-0 px-6 shadow-lg">
             <div className="flex flex-col space-y-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-base font-medium transition-colors hover:text-primary ${
-                    location.pathname === link.path
-                      ? "text-primary"
-                      : "text-muted-foreground"
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) =>
+                link.dropdown ? (
+                  <div key={link.name} className="flex flex-col space-y-2">
+                    <span className="text-base font-medium text-foreground px-2">{link.name}</span>
+                    <div className="pl-4 flex flex-col space-y-2 border-l border-primary/20 ml-2">
+                      {link.dropdown.map((item) => (
+                        <Link
+                          key={item.path}
+                          to={item.path}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className={`text-sm font-medium transition-colors hover:text-primary ${
+                            location.pathname === item.path
+                              ? "text-primary"
+                              : "text-muted-foreground"
+                          }`}
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`text-base font-medium transition-colors hover:text-primary ${
+                      location.pathname === link.path
+                        ? "text-primary"
+                        : "text-muted-foreground"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                )
+              )}
               <Button asChild className="w-full mt-4" variant="default">
                 <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
                   Get Started <ArrowUpRight className="ml-2 h-4 w-4" />
