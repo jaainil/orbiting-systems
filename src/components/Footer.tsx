@@ -135,8 +135,8 @@ export const Footer = () => {
                   </div>
                   <span>+91 98254 38119</span>
                 </a>
-                <div className="flex items-start gap-3 group">
-                  <div className="flex size-8 items-center justify-center rounded-full bg-secondary/30 mt-0.5">
+                <div className="flex items-center gap-3 group">
+                  <div className="flex size-8 items-center justify-center rounded-full bg-secondary/30 transition-colors">
                     <MapPin className="h-4 w-4 text-primary" />
                   </div>
                   <span>Anand, Gujarat, India</span>
