@@ -34,7 +34,7 @@ export const SEO = ({
     ? (canonical.startsWith("http") ? canonical : `${siteUrl}${canonical}`) 
     : (typeof window !== "undefined" ? window.location.href : siteUrl);
 
-  // Ensure image path is absolute
+  // Ensure image path is absolute and valid
   const cleanImage = image.startsWith("/") ? image : `/${image}`;
   const fullImage = image.startsWith("http") ? image : `${siteUrl}${cleanImage}`;
 
@@ -54,6 +54,8 @@ export const SEO = ({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={fullImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
       <meta property="og:site_name" content={name} />
       <meta property="og:locale" content="en_US" />
 
