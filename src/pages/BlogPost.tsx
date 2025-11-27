@@ -2,6 +2,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SEO } from "@/components/SEO";
+import { Comments } from "@/components/Comments";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, User } from "lucide-react";
@@ -30,7 +31,6 @@ const BlogPost = () => {
 
   if (postPath && modules[postPath]) {
     const Post = lazy(async () => {
-      // @ts-expect-error - dynamic import
       const module = await modules[postPath]() as { default: React.ComponentType<any>, frontmatter: Frontmatter };
       setFrontmatter(module.frontmatter);
       return module;
@@ -120,6 +120,8 @@ const BlogPost = () => {
               <PostContent />
             </Suspense>
           </div>
+          
+          <Comments />
         </div>
       </article>
 
