@@ -20,6 +20,7 @@ const About = () => {
       <SEO
         title="About Aexaware Infotech – Trusted Innovation Partner"
         description="Learn how Aexaware Infotech grew from Vadodara to a global digital agency delivering web, AI and app solutions."
+        schemaType="organization"
       />
       <Navbar />
 

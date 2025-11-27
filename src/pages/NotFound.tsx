@@ -8,7 +8,7 @@ const NotFound = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background relative overflow-hidden">
       <SEO
-        title="Page Not Found – Aexaware Infotech"
+        title="Page Not Found — Aexaware Infotech"
         description="The page you are looking for does not exist."
         noindex={true}
       />

@@ -49,6 +49,7 @@ const Contact = () => {
       <SEO
         title="Contact Aexaware Infotech – Let’s Build Together"
         description="Get in touch with Aexaware Infotech for custom web, mobile & AI solutions."
+        schemaType="local-business"
       />
       <Navbar />
 

@@ -72,6 +72,8 @@ const BlogPost = () => {
           description={frontmatter.description || ""}
           image={frontmatter.image}
           type="article"
+          schemaType="article"
+          date={frontmatter.date}
         />
       )}
       <Navbar />

@@ -24,6 +24,7 @@ const Index = () => {
       <SEO
         title="Aexaware Infotech – Custom Web, Mobile & AI Solutions from Vadodara, Gujarat"
         description="Aexaware Infotech builds scalable web, mobile, AI, and DevOps solutions for startups and enterprises – Made in Vadodara, Serving Globally."
+        schemaType="local-business"
       />
       <Navbar />
       <Hero />
