@@ -2,9 +2,16 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Home, Search } from "lucide-react";
 
+import { SEO } from "@/components/SEO";
+
 const NotFound = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background relative overflow-hidden">
+      <SEO
+        title="Page Not Found – Aexaware Infotech"
+        description="The page you are looking for does not exist."
+        noindex={true}
+      />
       {/* Subtle background effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
       

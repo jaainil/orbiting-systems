@@ -40,7 +40,7 @@ const BlogPost = () => {
         let image = module.frontmatter.image;
         if (image && image.startsWith("./")) {
           const imagePath = postPath.replace(/[^/]*$/, image.replace("./", ""));
-          image = images[imagePath] || image;
+          image = images[imagePath] || null;
         }
         
         // Only set frontmatter if it hasn't been set yet or is different

@@ -29,7 +29,10 @@ export const SEO = ({
 }: SEOProps) => {
   const siteUrl = "https://aexaware.com";
   const fullUrl = canonical ? (canonical.startsWith("http") ? canonical : `${siteUrl}${canonical}`) : siteUrl;
-  const fullImage = image.startsWith("http") ? image : `${siteUrl}${image}`;
+  
+  // Ensure image path is clean
+  const cleanImage = image.startsWith("/") ? image : `/${image}`;
+  const fullImage = image.startsWith("http") ? image : `${siteUrl}${cleanImage}`;
 
   return (
     <Helmet>
