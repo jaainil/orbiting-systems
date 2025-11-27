@@ -31,8 +31,9 @@ export const SEO = ({
   const fullUrl = canonical ? (canonical.startsWith("http") ? canonical : `${siteUrl}${canonical}`) : siteUrl;
   
   // Ensure image path is clean
-  const cleanImage = image.startsWith("/") ? image : `/${image}`;
-  const fullImage = image.startsWith("http") ? image : `${siteUrl}${cleanImage}`;
+  const effectiveImage = image || "/og-image.png";
+  const cleanImage = effectiveImage.startsWith("/") ? effectiveImage : `/${effectiveImage}`;
+  const fullImage = effectiveImage.startsWith("http") ? effectiveImage : `${siteUrl}${cleanImage}`;
 
   return (
     <Helmet>
