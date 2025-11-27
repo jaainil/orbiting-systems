@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My Blog</title>
+    <link>https://aexaware.com</link>
+    <description>Latest updates and articles</description>
+    <language>en-us</language>
+    <atom:link href="https://aexaware.com/rss.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title><![CDATA[7 Essential Websites for Software Engineers Daily]]></title>
+      <link>https://aexaware.com/blog/7-essential-websites-for-software-engineers-daily</link>
+      <guid>https://aexaware.com/blog/7-essential-websites-for-software-engineers-daily</guid>
+      <pubDate>Thu, 27 Nov 2025 00:00:00 GMT</pubDate>
+      <description><![CDATA[Discover 7 essential websites for software engineers that boost productivity, keep you interview-ready, and track tech trends daily. Build a smarter workflow.]]></description>
+    </item>
+    <item>
+      <title><![CDATA[The Future of Web Development: Trends to Watch in 2025]]></title>
+      <link>https://aexaware.com/blog/sample-post</link>
+      <guid>https://aexaware.com/blog/sample-post</guid>
+      <pubDate>Tue, 18 Nov 2025 00:00:00 GMT</pubDate>
+      <description><![CDATA[Explore the key trends shaping the future of web development, from AI-driven workflows to the rise of WebAssembly.]]></description>
+    </item>
+  </channel>
+</rss>

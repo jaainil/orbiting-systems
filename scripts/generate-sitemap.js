@@ -6,9 +6,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const SITE_URL = 'https://aexaware.com';
+const BLOG_DIR = path.join(__dirname, '../src/content/blog');
 
-const routes = [
+const staticRoutes = [
   '/',
+  '/about',
   '/services',
   '/services/web-development',
   '/services/mobile-development',
@@ -23,16 +25,43 @@ const routes = [
   '/blog',
 ];
 
+function getBlogSlugs() {
+  if (!fs.existsSync(BLOG_DIR)) return [];
+  
+  const files = fs.readdirSync(BLOG_DIR);
+  return files
+    .filter(file => file.endsWith('.mdx'))
+    .map(file => {
+      // Read file content to check for slug in frontmatter, otherwise use filename
+      const content = fs.readFileSync(path.join(BLOG_DIR, file), 'utf-8');
+      const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
+      
+      if (frontmatterMatch) {
+        const frontmatter = frontmatterMatch[1];
+        const slugMatch = frontmatter.match(/slug:\s*(.+)/);
+        if (slugMatch) {
+          return `/blog/${slugMatch[1].trim()}`;
+        }
+      }
+      
+      // Fallback to filename without extension
+      return `/blog/${file.replace('.mdx', '')}`;
+    });
+}
+
 const generateSitemap = () => {
+  const blogRoutes = getBlogSlugs();
+  const allRoutes = [...staticRoutes, ...blogRoutes];
+
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${routes
+  ${allRoutes
     .map((route) => {
       return `
   <url>
     <loc>${SITE_URL}${route}</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>${route === '/' ? 'daily' : 'weekly'}</changefreq>
     <priority>${route === '/' ? '1.0' : '0.8'}</priority>
   </url>`;
     })
@@ -49,16 +78,4 @@ const generateSitemap = () => {
   console.log('✅ sitemap.xml generated!');
 };
 
-const generateRobots = () => {
-  const robots = `User-agent: *
-Allow: /
-Sitemap: ${SITE_URL}/sitemap.xml
-`;
-
-  const distPath = path.resolve(__dirname, '../public');
-  fs.writeFileSync(path.join(distPath, 'robots.txt'), robots);
-  console.log('✅ robots.txt generated!');
-};
-
 generateSitemap();
-generateRobots();
