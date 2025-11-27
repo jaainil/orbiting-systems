@@ -7,41 +7,24 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Calendar, User } from "lucide-react";
 
 const Blog = () => {
-  const posts = [
-    {
-      slug: "sample-post",
-      title: "The Future of Web Development: Trends to Watch in 2025",
-      excerpt:
-        "Explore the key trends shaping the future of web development, from AI-driven workflows to the rise of WebAssembly.",
-      date: "Nov 18, 2025",
-      author: "Aexaware Team",
-      category: "Technology",
-      image:
-        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
-    },
-    {
-      slug: "#",
-      title: "Optimizing React Applications for Performance",
-      excerpt:
-        "Learn practical strategies to boost the speed and responsiveness of your React apps, ensuring a smooth user experience.",
-      date: "Oct 24, 2025",
-      author: "Dev Team",
-      category: "Development",
-      image:
-        "https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=800&q=80",
-    },
-    {
-      slug: "#",
-      title: "Why UI/UX Design Matters More Than Ever",
-      excerpt:
-        "In a crowded digital marketplace, exceptional design is the key to standing out and converting visitors into loyal customers.",
-      date: "Sep 12, 2025",
-      author: "Design Team",
-      category: "Design",
-      image:
-        "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80",
-    },
-  ];
+  // Dynamically import all MDX files from the content/blog directory
+  const modules = import.meta.glob<{ frontmatter: any }>("/src/content/blog/*.mdx", {
+    eager: true,
+  });
+
+  console.log("Blog modules:", modules);
+
+  const posts = Object.entries(modules)
+    .map(([path, module]) => {
+      const slug = path.split("/").pop()?.replace(".mdx", "") || "";
+      return {
+        slug,
+        ...module.frontmatter,
+      };
+    })
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  console.log("Blog posts:", posts);
 
   return (
     <div className="min-h-screen bg-background font-sans">

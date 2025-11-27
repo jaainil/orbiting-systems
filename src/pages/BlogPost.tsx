@@ -20,14 +20,19 @@ const BlogPost = () => {
   const { slug } = useParams();
   const [frontmatter, setFrontmatter] = useState<Frontmatter | null>(null);
 
-  // In a real app, you might map slugs to imports or use a dynamic import strategy
-  // For this demo, we'll explicitly handle the sample post
+  // Get all available posts
+  const modules = import.meta.glob("/src/content/blog/*.mdx");
+
+  // Find the matching post
+  const postPath = Object.keys(modules).find((path) => path.includes(`${slug}.mdx`));
+  
   let PostContent;
-  if (slug === "sample-post") {
+
+  if (postPath && modules[postPath]) {
     const Post = lazy(async () => {
-      const module = await import("@/content/blog/sample-post.mdx");
-      // @ts-expect-error - frontmatter is added by remark plugin
-      setFrontmatter(module.frontmatter as Frontmatter);
+      // @ts-expect-error - dynamic import
+      const module = await modules[postPath]() as { default: React.ComponentType<any>, frontmatter: Frontmatter };
+      setFrontmatter(module.frontmatter);
       return module;
     });
     PostContent = Post;
