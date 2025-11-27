@@ -34,7 +34,7 @@ export default defineConfig(({ mode }) => ({
         manualChunks: {
           vendor: ["react", "react-dom", "react-router-dom", "react-helmet-async"],
           ui: ["@radix-ui/react-dialog", "@radix-ui/react-dropdown-menu", "@radix-ui/react-tooltip", "lucide-react"],
-          animations: ["gsap", "animejs", "@gsap/react"],
+          animations: ["gsap", "@gsap/react"],
         },
       },
     },
