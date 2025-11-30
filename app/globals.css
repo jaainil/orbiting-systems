@@ -1,0 +1,197 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+    :root {
+        /* Aexaware - Enterprise Theme */
+
+        /* Base colors - Clean White & Deep Navy */
+        --background: 0 0% 100%;
+        --foreground: 222 47% 11%;
+
+        --card: 0 0% 100%;
+        --card-foreground: 222 47% 11%;
+
+        --popover: 0 0% 100%;
+        --popover-foreground: 222 47% 11%;
+
+        /* Electric Blue */
+        --primary: 221 83% 53%;
+        --primary-foreground: 210 40% 98%;
+
+        /* Slate Grey */
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 222 47% 11%;
+
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215 16% 47%;
+
+        --accent: 210 40% 96.1%;
+        --accent-foreground: 222 47% 11%;
+
+        /* Semantic colors */
+        --success: 142 76% 36%;
+        --success-foreground: 0 0% 100%;
+
+        --warning: 38 92% 50%;
+        --warning-foreground: 0 0% 100%;
+
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 98%;
+
+        /* UI Elements */
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
+        --ring: 221 83% 53%;
+
+        --radius: 0.5rem;
+
+        /* Transitions */
+        --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        --sidebar-background: 0 0% 98%;
+        --sidebar-foreground: 240 5.3% 26.1%;
+        --sidebar-primary: 240 5.9% 10%;
+        --sidebar-primary-foreground: 0 0% 98%;
+        --sidebar-accent: 240 4.8% 95.9%;
+        --sidebar-accent-foreground: 240 5.9% 10%;
+        --sidebar-border: 220 13% 91%;
+        --sidebar-ring: 217.2 91.2% 59.8%;
+    }
+
+    .dark {
+        /* Dark mode - Deep Navy & Electric Blue */
+        --background: 222 47% 11%;
+        --foreground: 210 40% 98%;
+
+        --card: 222 47% 11%;
+        --card-foreground: 210 40% 98%;
+
+        --popover: 222 47% 11%;
+        --popover-foreground: 210 40% 98%;
+
+        --primary: 217 91% 60%;
+        --primary-foreground: 222 47.4% 11.2%;
+
+        --secondary: 217 32% 17%;
+        --secondary-foreground: 210 40% 98%;
+
+        --muted: 217 32% 17%;
+        --muted-foreground: 215 20% 65%;
+
+        --accent: 217 32% 17%;
+        --accent-foreground: 210 40% 98%;
+
+        --border: 217 32% 17%;
+        --input: 217 32% 17%;
+        --ring: 224 76% 48%;
+
+        --sidebar-background: 240 5.9% 10%;
+        --sidebar-foreground: 240 4.8% 95.9%;
+        --sidebar-primary: 224.3 76.3% 48%;
+        --sidebar-primary-foreground: 0 0% 100%;
+        --sidebar-accent: 240 3.7% 15.9%;
+        --sidebar-accent-foreground: 240 4.8% 95.9%;
+        --sidebar-border: 240 3.7% 15.9%;
+        --sidebar-ring: 217.2 91.2% 59.8%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground antialiased;
+        font-feature-settings: "kern" 1, "liga" 1;
+    }
+
+    /* Typography scale - Human & Conversational */
+    h1 {
+        @apply text-4xl md:text-6xl font-bold tracking-tight leading-[1.1];
+    }
+
+    h2 {
+        @apply text-3xl md:text-4xl font-semibold tracking-tight leading-[1.2];
+    }
+
+    h3 {
+        @apply text-xl md:text-2xl font-medium leading-snug;
+    }
+
+    h4 {
+        @apply text-lg font-medium;
+    }
+
+    p {
+        @apply text-base md:text-lg leading-relaxed text-muted-foreground;
+    }
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    .glass-panel {
+        @apply bg-white/50 backdrop-blur-md border border-white/20 shadow-sm;
+    }
+
+    .dark .glass-panel {
+        @apply bg-black/50 border-white/10;
+    }
+}
+
+@layer utilities {
+    @keyframes beam {
+        0% {
+            transform: translateX(-100%);
+        }
+
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+    @keyframes beam-vertical {
+        0% {
+            transform: translateY(-100%);
+        }
+
+        100% {
+            transform: translateY(100%);
+        }
+    }
+
+    .animate-beam {
+        animation: beam 3s linear infinite;
+    }
+
+    .animate-beam-vertical {
+        animation: beam-vertical 3s linear infinite;
+    }
+
+    @keyframes marquee {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    .animate-marquee {
+        animation: marquee 40s linear infinite;
+    }
+
+    .pause-on-hover:hover .animate-marquee {
+        animation-play-state: paused;
+    }
+}

@@ -13,6 +13,7 @@ package-lock.json
 dist/
 build/
 vite.config.ts.timestamp*
+.next/
 
 # Vite temporary cache
 .vite/
