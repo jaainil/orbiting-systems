@@ -3,6 +3,7 @@ import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import mermaid from 'astro-mermaid';
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,7 +13,10 @@ export default defineConfig({
         tailwind({
             applyBaseStyles: false,
         }),
-        mdx(),
+        mermaid(),
+        mdx({
+            optimize: true,
+        }),
         sitemap({
             changefreq: 'weekly',
             priority: 0.7,

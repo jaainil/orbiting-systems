@@ -4,6 +4,7 @@ import { Navbar } from '@/components/react/Navbar';
 import { Footer } from '@/components/react/Footer';
 import { Toaster as Sonner } from '@/components/ui/sonner';
 import { generateOrganizationSchema, generateWebSiteSchema } from '@/lib/schema';
+import { SEO } from "astro-seo";
 
 interface Props {
   title: string;
@@ -69,57 +70,53 @@ const websiteSchema = generateWebSiteSchema({
 <!doctype html>
 <html lang={lang}>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
-    
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#3b82f6" />
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href={canonicalURL} />
-    
-    <!-- Title -->
-    <title>{title}</title>
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content={type} />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={imageUrl} />
-    <meta property="og:site_name" content="Aexaware Infotech" />
-    <meta property="og:locale" content="en_US" />
-    {type === 'article' && publishedTime && (
-      <meta property="article:published_time" content={publishedTime} />
-    )}
-    {type === 'article' && modifiedTime && (
-      <meta property="article:modified_time" content={modifiedTime} />
-    )}
-    {type === 'article' && author && (
-      <meta property="article:author" content={author} />
-    )}
-    {type === 'article' && tags && tags.map((tag) => (
-      <meta property="article:tag" content={tag} />
-    ))}
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content={canonicalURL} />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={imageUrl} />
-    <meta name="twitter:site" content="@aexaware" />
-    <meta name="twitter:creator" content="@aexaware" />
+    <SEO
+      title={title}
+      description={description}
+      openGraph={{
+        basic: {
+          title: title,
+          type: type,
+          image: imageUrl,
+          url: canonicalURL,
+        },
+        optional: {
+          siteName: "Aexaware Infotech",
+          locale: "en_US",
+          description: description,
+        },
+        article: type === 'article' ? {
+          publishedTime: publishedTime,
+          modifiedTime: modifiedTime,
+          authors: author ? [author] : undefined,
+          tags: tags,
+        } : undefined,
+      }}
+      twitter={{
+        card: "summary_large_image",
+        site: "@aexaware",
+        creator: "@aexaware",
+        title: title,
+        description: description,
+        image: imageUrl,
+      }}
+      extend={{
+        link: [
+          { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+          { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon.png" },
+          { rel: "apple-touch-icon", href: "/favicon.png" },
+          { rel: "canonical", href: canonicalURL },
+        ],
+        meta: [
+          { name: "viewport", content: "width=device-width, initial-scale=1" },
+          { name: "generator", content: Astro.generator },
+          { name: "theme-color", content: "#3b82f6" },
+        ],
+      }}
+    />
     
     <!-- Sitemap & RSS -->
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    {import.meta.env.PROD && <link rel="sitemap" href="/sitemap-index.xml" />}
     <link rel="alternate" type="application/rss+xml" title="Aexaware Infotech Blog" href="/rss.xml" />
     
     <!-- Preconnect for fonts -->
