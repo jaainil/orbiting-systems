@@ -6,13 +6,14 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://aexaware.com', // Replace with actual site URL if known, or keep generic
+    site: 'https://aexaware.com',
     integrations: [
         react(),
         tailwind({
-            applyBaseStyles: false, // We'll import our own global.css
+            applyBaseStyles: false,
         }),
         mdx(),
         sitemap(),
     ],
+    output: 'static',
 });

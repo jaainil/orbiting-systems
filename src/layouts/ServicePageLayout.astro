@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import { generateBreadcrumbSchema } from '@/lib/schema';
 import { ArrowRight } from "lucide-react";
 
 interface Props {
@@ -31,12 +32,60 @@ const {
   ctaTitle = "Looking for something else?",
   ctaDescription = "Work with us to build your dream project.",
 } = Astro.props;
+
+// Generate breadcrumb schema
+const siteUrl = Astro.site || 'https://aexaware.com';
+const currentPath = Astro.url.pathname;
+const breadcrumbSchema = generateBreadcrumbSchema({
+  itemListElement: [
+    {
+      position: 1,
+      name: "Home",
+      item: siteUrl.toString(),
+    },
+    {
+      position: 2,
+      name: "Services",
+      item: new URL('/services', siteUrl).href,
+    },
+    {
+      position: 3,
+      name: title,
+    },
+  ],
+});
+
+// Generate Service schema
+const serviceSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": title,
+  "provider": {
+    "@type": "Organization",
+    "name": "Aexaware Infotech",
+    "url": siteUrl.toString(),
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "India"
+  },
+  "description": description,
+});
 ---
 
 <Layout 
   title={`${title} – Aexaware Infotech`} 
   description={description}
 >
+  <!-- Service and Breadcrumb JSON-LD -->
+  <script type="application/ld+json" set:html={serviceSchema} slot="head" />
+  <script type="application/ld+json" set:html={breadcrumbSchema} slot="head" />
+  
+  <!-- Skip to content link for accessibility -->
+  <a href="#services" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg">
+    Skip to main content
+  </a>
+  
   {/* Hero Section */}
   <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent -z-10" />
@@ -56,10 +105,10 @@ const {
           {heroDescription}
         </p>
         <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/contact" class="inline-flex items-center justify-center h-12 rounded-full px-8 text-base font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+          <a href="/contact" aria-label="Get a quote for our services" class="inline-flex items-center justify-center h-12 rounded-full px-8 text-base font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
             Get a Quote <ArrowRight className="ml-2 h-5 w-5" />
           </a>
-          <a href="#services" class="inline-flex items-center justify-center h-12 rounded-full px-8 text-base font-medium border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors">
+          <a href="#services" aria-label="Explore our services" class="inline-flex items-center justify-center h-12 rounded-full px-8 text-base font-medium border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors">
             Explore Services
           </a>
         </div>
@@ -101,7 +150,7 @@ const {
                 >
                   <service.icon className="h-8 w-8" aria-hidden="true" />
                 </div>
-                <span class="text-5xl font-serif font-bold text-muted-foreground/10 group-hover:text-foreground/10 transition-colors">
+                <span class="text-5xl font-serif font-bold text-muted-foreground/10 group-hover:text-foreground/10 transition-colors" aria-hidden="true">
                   {service.id}
                 </span>
               </div>
@@ -120,7 +169,7 @@ const {
   </section>
 
   {/* Technical Toolbox - Marquee */}
-  <section class="py-24 bg-foreground text-background overflow-hidden">
+  <section class="py-24 bg-foreground text-background overflow-hidden" aria-label="Technology stack">
     <div class="container mx-auto px-6 lg:px-8 text-center mb-16">
       <span class="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white text-sm font-medium mb-4 border border-white/10">
         Our Technical Toolbox
@@ -137,8 +186,8 @@ const {
     {/* Marquee Container */}
     <div class="relative flex w-full overflow-hidden py-4">
       {/* Gradient Masks */}
-      <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-foreground to-transparent z-10" />
-      <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-foreground to-transparent z-10" />
+      <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-foreground to-transparent z-10" aria-hidden="true" />
+      <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-foreground to-transparent z-10" aria-hidden="true" />
 
       <div class="flex animate-marquee whitespace-nowrap gap-16 min-w-full items-center">
         {techStack.map((tech) => (
@@ -162,14 +211,15 @@ const {
   </section>
 
   {/* CTA Section */}
-  <section class="py-24 lg:py-32">
+  <section class="py-24 lg:py-32" aria-label="Contact call to action">
     <div class="container mx-auto px-6 lg:px-8">
       <div class="relative overflow-hidden rounded-[2.5rem] bg-secondary/50 px-6 py-24 text-center sm:px-16 border border-border/50">
         {/* Decorative blobs */}
-        <div class="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-primary/20 blur-3xl opacity-60 animate-pulse" />
+        <div class="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-primary/20 blur-3xl opacity-60 animate-pulse" aria-hidden="true" />
         <div
           class="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-accent/20 blur-3xl opacity-60 animate-pulse"
           style="animation-delay: 1s;"
+          aria-hidden="true"
         />
 
         <div class="relative z-10 mx-auto max-w-2xl">
@@ -180,10 +230,10 @@ const {
             {ctaDescription}
           </p>
           <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a href="/contact" class="inline-flex items-center justify-center h-14 rounded-full px-10 text-lg font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-xl shadow-primary/20">
+            <a href="/contact" aria-label="Contact us to discuss your project" class="inline-flex items-center justify-center h-14 rounded-full px-10 text-lg font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-xl shadow-primary/20">
               Contact Us
             </a>
-            <a href="tel:+918140734392" class="inline-flex items-center justify-center h-14 rounded-full px-10 text-lg font-medium border border-input bg-background/50 backdrop-blur-sm hover:bg-accent hover:text-accent-foreground transition-colors">
+            <a href="tel:+918140734392" aria-label="Call us at +91 81407 34392" class="inline-flex items-center justify-center h-14 rounded-full px-10 text-lg font-medium border border-input bg-background/50 backdrop-blur-sm hover:bg-accent hover:text-accent-foreground transition-colors">
               +91 81407 34392
             </a>
           </div>

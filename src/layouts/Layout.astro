@@ -4,15 +4,65 @@ import { Navbar } from '@/components/react/Navbar';
 import { Footer } from '@/components/react/Footer';
 import { Toaster } from '@/components/ui/toaster';
 import { Toaster as Sonner } from '@/components/ui/sonner';
+import { generateOrganizationSchema, generateWebSiteSchema } from '@/lib/schema';
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  tags?: string[];
 }
 
-const { title, description = "Aexaware Infotech - Building Digital Excellence", image = "/og-image.png" } = Astro.props;
+const { 
+  title, 
+  description = "Aexaware Infotech - Building Digital Excellence", 
+  image = "/og-image.png",
+  type = "website",
+  publishedTime,
+  modifiedTime,
+  author,
+  tags
+} = Astro.props;
+
 const currentPath = Astro.url.pathname;
+const siteUrl = Astro.site || 'https://aexaware.com';
+const canonicalURL = new URL(currentPath, siteUrl).href;
+const imageUrl = new URL(image, siteUrl).href;
+
+// Generate JSON-LD structured data
+const organizationSchema = generateOrganizationSchema({
+  name: "Aexaware Infotech",
+  url: siteUrl.toString(),
+  logo: new URL('/og-image.png', siteUrl).href,
+  description: "Full-service digital agency specializing in web development, mobile apps, AI/ML integration, and cloud solutions",
+  sameAs: [
+    "https://www.linkedin.com/company/aexaware",
+    "https://twitter.com/aexaware",
+    "https://github.com/aexaware"
+  ],
+  contactPoint: {
+    telephone: "+91-8140734392",
+    contactType: "Customer Service",
+    email: "contact@aexaware.com"
+  },
+  address: {
+    streetAddress: "Anand",
+    addressLocality: "Vadodara",
+    addressRegion: "Gujarat",
+    postalCode: "388001",
+    addressCountry: "IN"
+  }
+});
+
+const websiteSchema = generateWebSiteSchema({
+  name: "Aexaware Infotech",
+  url: siteUrl.toString(),
+  description: "Building Digital Excellence - Web, Mobile, AI/ML Solutions"
+});
 ---
 
 <!doctype html>
@@ -20,25 +70,78 @@ const currentPath = Astro.url.pathname;
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#3b82f6" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Title -->
     <title>{title}</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={image} />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:site_name" content="Aexaware Infotech" />
+    <meta property="og:locale" content="en_US" />
+    {type === 'article' && publishedTime && (
+      <meta property="article:published_time" content={publishedTime} />
+    )}
+    {type === 'article' && modifiedTime && (
+      <meta property="article:modified_time" content={modifiedTime} />
+    )}
+    {type === 'article' && author && (
+      <meta property="article:author" content={author} />
+    )}
+    {type === 'article' && tags && tags.map((tag) => (
+      <meta property="article:tag" content={tag} />
+    ))}
     
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:site" content="@aexaware" />
+    <meta name="twitter:creator" content="@aexaware" />
+    
+    <!-- Sitemap & RSS -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Aexaware Infotech Blog" href="/rss.xml" />
+    
+    <!-- Preconnect for fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Preload critical fonts -->
     <link
+      rel="preload"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
-      rel="stylesheet">
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={organizationSchema} />
+    <script type="application/ld+json" set:html={websiteSchema} />
   </head>
   <body>
     <Navbar client:load currentPath={currentPath} />

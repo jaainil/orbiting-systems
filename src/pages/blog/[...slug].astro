@@ -5,6 +5,7 @@ import { ArrowLeft, Calendar, User } from 'lucide-react';
 import BlogEngagement from '@/components/react/BlogEngagement';
 import { Comments } from '@/components/react/Comments';
 import { Image } from 'astro:assets';
+import { generateArticleSchema, generateBreadcrumbSchema } from '@/lib/schema';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -25,13 +26,59 @@ const formatDate = (date: Date) => {
     day: 'numeric',
   });
 };
+
+// Generate Article JSON-LD
+const siteUrl = Astro.site || 'https://aexaware.com';
+const articleSchema = generateArticleSchema({
+  headline: post.data.title,
+  description: post.data.description,
+  image: post.data.image ? new URL(post.data.image.src, siteUrl).href : new URL('/og-image.png', siteUrl).href,
+  datePublished: post.data.date.toISOString(),
+  dateModified: post.data.date.toISOString(),
+  author: {
+    name: post.data.author,
+  },
+  publisher: {
+    name: "Aexaware Infotech",
+    logo: new URL('/og-image.png', siteUrl).href,
+  },
+});
+
+// Generate Breadcrumb JSON-LD
+const breadcrumbSchema = generateBreadcrumbSchema({
+  itemListElement: [
+    {
+      position: 1,
+      name: "Home",
+      item: siteUrl.toString(),
+    },
+    {
+      position: 2,
+      name: "Blog",
+      item: new URL('/blog', siteUrl).href,
+    },
+    {
+      position: 3,
+      name: post.data.title,
+    },
+  ],
+});
 ---
 
 <Layout 
   title={post.data.title} 
   description={post.data.description}
   image={post.data.image?.src}
+  type="article"
+  publishedTime={post.data.date.toISOString()}
+  modifiedTime={post.data.date.toISOString()}
+  author={post.data.author}
+  tags={post.data.tags}
 >
+  <!-- Article JSON-LD -->
+  <script type="application/ld+json" set:html={articleSchema} slot="head" />
+  <script type="application/ld+json" set:html={breadcrumbSchema} slot="head" />
+  
   <article class="pt-32 pb-24 lg:pt-48 lg:pb-32">
     <div class="container mx-auto px-6 lg:px-8 max-w-3xl">
       <div class="mb-8">
