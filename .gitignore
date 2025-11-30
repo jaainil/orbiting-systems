@@ -8,10 +8,6 @@
 # ⚙️ NODE / BUN / PNPM / NPM
 # ---------------------------------------------------
 node_modules/
-bun.lockb
-pnpm-lock.yaml
-yarn.lock
-package-lock.json
 
 # ---------------------------------------------------
 # 🧱 ASTRO BUILD OUTPUT
