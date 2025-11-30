@@ -42,10 +42,10 @@ export default defineConfig({
     vite: {
         server: {
             host: true,
-            allowedHosts: ['https://aexaware.com'],
+            allowedHosts: ['aexaware.com', 'www.aexaware.com'],
         },
         preview: {
-            allowedHosts: ['https://aexaware.com'],
+            allowedHosts: ['aexaware.com', 'www.aexaware.com'],
         },
     },
 });
