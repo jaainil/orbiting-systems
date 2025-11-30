@@ -8,6 +8,7 @@ import mermaid from 'astro-mermaid';
 // https://astro.build/config
 export default defineConfig({
     site: 'https://aexaware.com',
+    prefetch: true,
     integrations: [
         react(),
         tailwind({
