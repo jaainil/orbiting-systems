@@ -33,5 +33,8 @@ export default defineConfig({
             host: true,
             allowedHosts: ['aexaware.com'],
         },
+        preview: {
+            allowedHosts: ['aexaware.com'],
+        },
     },
 });
