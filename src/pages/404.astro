@@ -1,6 +1,5 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { Button } from '@/components/ui/button';
 import { Home, Search } from "lucide-react";
 ---
 
@@ -34,18 +33,14 @@ import { Home, Search } from "lucide-react";
       </div>
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-        <Button size="lg" asChild>
-          <a href="/">
-            <Home className="mr-2 w-5 h-5" />
-            Back to Home
-          </a>
-        </Button>
-        <Button variant="outline" size="lg" asChild>
-          <a href="/services">
-            <Search className="mr-2 w-5 h-5" />
-            Explore Services
-          </a>
-        </Button>
+        <a href="/" class="inline-flex items-center justify-center h-12 rounded-full px-8 text-base font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-md">
+          <Home className="mr-2 w-5 h-5" />
+          Back to Home
+        </a>
+        <a href="/services" class="inline-flex items-center justify-center h-12 rounded-full px-8 text-base font-medium border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors">
+          <Search className="mr-2 w-5 h-5" />
+          Explore Services
+        </a>
       </div>
     </div>
   </div>

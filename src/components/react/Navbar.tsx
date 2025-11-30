@@ -106,19 +106,20 @@ export const Navbar = ({ currentPath = "" }: NavbarProps) => {
                         </NavigationMenuContent>
                       </>
                     ) : (
-                      <a href={link.path}>
-                        <NavigationMenuLink
-                          className={cn(
-                            navigationMenuTriggerStyle(),
-                            "bg-transparent hover:bg-transparent hover:text-primary focus:bg-transparent data-[active]:bg-transparent",
-                            isActive(link.path)
-                              ? "text-foreground font-semibold"
-                              : "text-muted-foreground"
-                          )}
-                        >
+                      <NavigationMenuLink
+                        asChild
+                        className={cn(
+                          navigationMenuTriggerStyle(),
+                          "bg-transparent hover:bg-transparent hover:text-primary focus:bg-transparent data-[active]:bg-transparent",
+                          isActive(link.path)
+                            ? "text-foreground font-semibold"
+                            : "text-muted-foreground"
+                        )}
+                      >
+                        <a href={link.path}>
                           {link.name}
-                        </NavigationMenuLink>
-                      </a>
+                        </a>
+                      </NavigationMenuLink>
                     )}
                   </NavigationMenuItem>
                 ))}
