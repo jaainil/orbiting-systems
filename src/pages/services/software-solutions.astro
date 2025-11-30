@@ -1,0 +1,56 @@
+---
+import ServicePageLayout from '@/layouts/ServicePageLayout.astro';
+import { Code2, Server, Building2 } from "lucide-react";
+
+const services = [
+  {
+    id: "01",
+    icon: Code2,
+    title: "Custom Software Development",
+    desc: "We develop custom software tailored to your specific business needs, ensuring seamless integration, scalability, and performance.",
+    gradient: "from-green-500/20 to-emerald-500/20",
+    iconColor: "text-green-600",
+  },
+  {
+    id: "02",
+    icon: Server,
+    title: "Large-Scale App Development",
+    desc: "We design and develop scalable, robust software systems that efficiently handle complex business processes with lots of users.",
+    gradient: "from-blue-500/20 to-indigo-500/20",
+    iconColor: "text-blue-600",
+  },
+  {
+    id: "03",
+    icon: Building2,
+    title: "Enterprise Application Development",
+    desc: "We build robust, secure, customized enterprise applications that enhance workflow processes, foster collaboration, and support the long-term growth of the enterprise.",
+    gradient: "from-orange-500/20 to-amber-500/20",
+    iconColor: "text-orange-600",
+  },
+];
+
+const techStack = [
+  "Bootstrap",
+  "Tailwind CSS",
+  "AngularJS",
+  "ReactJS",
+  "jQuery",
+  "Figma Software",
+  "Adobe XD",
+  "Adobe Photoshop",
+  "Sketch Software",
+];
+---
+
+<ServicePageLayout
+  title="Software Solutions"
+  description="Custom Software. Scalable Solutions. Tailored Software That Solves Complex Challenges."
+  heroBadge="Software Solutions"
+  heroTitle="Custom Software."
+  heroSubtitle="Scalable Solutions."
+  heroDescription="We build robust, scalable, and secure software solutions tailored to your unique business challenges. From enterprise applications to custom tools, we empower your operations with technology."
+  servicesTitle="Our Custom Software Development Services Include"
+  servicesDescription="We provide end-to-end software development services, from initial consultation and design to development, deployment, and ongoing support."
+  services={services}
+  techStack={techStack}
+/>

@@ -1,0 +1,49 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { Hero } from '@/components/react/Hero';
+import { DrivingFuture } from '@/components/react/DrivingFuture';
+import { ServicesGrid } from '@/components/react/ServicesGrid';
+import { SmartSolutions } from '@/components/react/SmartSolutions';
+import { Industries } from '@/components/react/Industries';
+import { ProcessSteps } from '@/components/react/ProcessSteps';
+import { Testimonials } from '@/components/react/Testimonials';
+import { Button } from '@/components/ui/button';
+---
+
+<Layout 
+  title="Aexaware Infotech – Custom Web, Mobile & AI Solutions from Vadodara, Gujarat" 
+  description="Aexaware Infotech builds scalable web, mobile, AI, and DevOps solutions for startups and enterprises – Made in Vadodara, Serving Globally."
+>
+  <Hero client:load />
+  <DrivingFuture client:visible />
+  <ServicesGrid client:visible />
+  <SmartSolutions client:visible />
+  <Industries client:visible />
+  <ProcessSteps client:visible />
+  <Testimonials client:visible />
+
+  {/* CTA Section */}
+  <section class="py-24 lg:py-32">
+    <div class="container mx-auto px-6 lg:px-8">
+      <div class="relative overflow-hidden rounded-[2.5rem] bg-secondary/50 px-6 py-24 text-center sm:px-16">
+        {/* Decorative blobs */}
+        <div class="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-white blur-3xl opacity-60" />
+        <div class="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-accent/20 blur-3xl opacity-60" />
+
+        <div class="relative z-10 mx-auto max-w-2xl">
+          <h2 class="font-serif text-4xl font-medium text-foreground md:text-5xl">
+            Let’s Bring It to Life
+          </h2>
+          <p class="mt-6 text-lg text-muted-foreground">
+            Book Your Free Expert Consultation Today!
+          </p>
+          <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button size="lg" className="h-14 rounded-full px-8 text-lg" asChild client:visible>
+              <a href="/contact">Get Free Consultation</a>
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
