@@ -30,6 +30,7 @@ export default defineConfig({
     vite: {
         server: {
             host: true,
+            allowedHosts: ['aexaware.com'],
         },
     },
 });
