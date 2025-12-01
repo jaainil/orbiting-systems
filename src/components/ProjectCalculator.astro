@@ -56,7 +56,7 @@ const timelines = [
             <p id="step-desc" class="text-lg text-muted-foreground">Select the category that best fits your project.</p>
         </div>
 
-        <div class="p-6 md:p-8 pt-0">
+        <div class="p-6 md:p-8 pt-0 relative z-10">
             <!-- Step 1: Type -->
             <div id="step-type" class="step-content">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -163,8 +163,8 @@ const timelines = [
                         <p>Looking for a <span class="text-primary" id="summary-type">...</span> with a budget of <span class="text-primary" id="summary-budget">...</span>, needed <span class="text-primary" id="summary-timeline">...</span>.</p>
                     </div>
 
-                    <div class="flex justify-end pt-4">
-                        <div class="cf-turnstile mr-4" data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}></div>
+                    <div class="flex flex-col md:flex-row justify-end pt-4 items-center gap-4">
+                        <div class="cf-turnstile" data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}></div>
                         <button type="submit" id="submit-btn" class={cn(buttonVariants({ size: "lg" }), "w-full md:w-auto rounded-full")}>
                             Get My Estimate
                             <Send class="ml-2 h-4 w-4" />
@@ -322,6 +322,7 @@ const timelines = [
         if (currentStep < steps.length - 1) {
             currentStep++;
             updateUI();
+            document.getElementById('project-calculator')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }
 
