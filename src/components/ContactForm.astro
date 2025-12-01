@@ -91,13 +91,41 @@ import { cn } from "@/lib/utils";
     submitBtn.disabled = true;
     submitBtn.innerText = "Sending...";
 
-    // Simulate submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    alert("Message sent! Thanks for reaching out. We'll get back to you shortly.");
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
     
-    submitBtn.disabled = false;
-    submitBtn.innerText = originalBtnText;
-    form.reset();
+    console.log('Sending contact form data:', data);
+
+    try {
+      const response = await fetch('https://auto.aexaware.com/webhook/9e575849-7b76-49ac-8eee-b4b8ab8d9ff4', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        alert("Message sent! Thanks for reaching out. We'll get back to you shortly.");
+        form.reset();
+      } else {
+        const errorText = await response.text();
+        console.error('Webhook error response:', errorText);
+        let errorMessage = 'Failed to send message';
+        try {
+            const errorJson = JSON.parse(errorText);
+            if (errorJson.message) errorMessage = errorJson.message;
+        } catch (e) {
+            // ignore JSON parse error
+        }
+        throw new Error(errorMessage);
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert(`Error: ${error instanceof Error ? error.message : "Something went wrong"}. Please try again later.`);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerText = originalBtnText;
+    }
   });
 </script>

@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import ProjectCalculator from '@/components/react/ProjectCalculator';
+import ProjectCalculator from '@/components/ProjectCalculator.astro';
 import { InteractiveGridPattern } from "@/components/ui/interactive-grid-pattern";
 ---
 
@@ -29,7 +29,7 @@ import { InteractiveGridPattern } from "@/components/ui/interactive-grid-pattern
         </p>
       </div>
 
-      <ProjectCalculator client:load />
+      <ProjectCalculator />
     </div>
   </main>
 </Layout>
