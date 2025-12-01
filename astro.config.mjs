@@ -4,6 +4,7 @@ import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import compress from '@playform/compress';
+import mermaid from 'astro-mermaid';
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,6 +14,22 @@ export default defineConfig({
         react(),
         tailwind({
             applyBaseStyles: false,
+        }),
+        mermaid({
+            theme: 'default',
+            autoTheme: true,
+            mermaidConfig: {
+                startOnLoad: false,
+                logLevel: 'error',
+                securityLevel: 'strict',
+                flowchart: {
+                    curve: 'basis',
+                    padding: 20
+                },
+                themeVariables: {
+                    fontFamily: 'ui-sans-serif, system-ui, sans-serif',
+                }
+            }
         }),
         mdx({
             optimize: true,
