@@ -1,13 +1,12 @@
 ---
-import { Image } from "astro:assets";
+
 
 const companies = [
-  { name: "Company 1", logo: "https://cdn.simpleicons.org/google/808080" },
-  { name: "Company 2", logo: "https://cdn.simpleicons.org/microsoft/808080" },
-  { name: "Company 3", logo: "https://cdn.simpleicons.org/amazon/808080" },
-  { name: "Company 4", logo: "https://cdn.simpleicons.org/spotify/808080" },
-  { name: "Company 5", logo: "https://cdn.simpleicons.org/netflix/808080" },
-  { name: "Company 6", logo: "https://cdn.simpleicons.org/airbnb/808080" },
+  { name: "Partner 1", logo: "/1.png" },
+  { name: "Partner 2", logo: "/2.png" },
+  { name: "Partner 3", logo: "/3.png" },
+  { name: "Partner 4", logo: "/4.png" },
+  { name: "Partner 5", logo: "/5.png" },
 ];
 ---
 
@@ -20,7 +19,7 @@ const companies = [
         <img 
           src={company.logo} 
           alt={`${company.name} logo`} 
-          class="h-8 w-auto object-contain dark:invert"
+          class="h-20 w-auto object-contain"
           loading="lazy"
         />
       ))}
