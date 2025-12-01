@@ -4,10 +4,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "start": "npx serve dist -l 4321",
-    "build": "astro build",
-    "preview": "astro preview --host",
+    "dev": "dotenvx run -- astro dev",
+    "start": "dotenvx run -- npx serve dist -l 4321",
+    "build": "dotenvx run -- astro build",
+    "preview": "dotenvx run -- astro preview --host",
     "astro": "astro"
   },
   "dependencies": {
@@ -52,6 +52,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@dotenvx/dotenvx": "^1.51.1",
     "@eslint/js": "^9.39.1",
     "@mdx-js/react": "^3.1.1",
     "@playform/compress": "0.2.0",

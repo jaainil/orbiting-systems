@@ -31,11 +31,11 @@ pnpm-debug.log*
 # ---------------------------------------------------
 # 📦 ENV FILES
 # ---------------------------------------------------
-.env
-.env.*
+# .env (Encrypted, safe to commit)
+.env.keys
 .env.local
-.env.production
 .env.development
+.env.test
 
 # ---------------------------------------------------
 # 🖼️ SYSTEM FILES
