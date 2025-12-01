@@ -15,7 +15,18 @@ export default defineConfig({
         tailwind({
             applyBaseStyles: false,
         }),
-        mermaid(),
+        mermaid({
+            theme: 'neutral',
+            autoTheme: true,
+            mermaidConfig: {
+                startOnLoad: false,
+                logLevel: 'error',
+                securityLevel: 'strict',
+                flowchart: {
+                    curve: 'basis'
+                }
+            }
+        }),
         mdx({
             optimize: true,
         }),
