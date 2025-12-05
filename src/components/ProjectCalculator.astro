@@ -164,7 +164,7 @@ const timelines = [
                     </div>
 
                     <div class="flex flex-col md:flex-row justify-end pt-4 items-center gap-4">
-                        <div class="cf-turnstile" data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}></div>
+                        <div id="calculator-turnstile-widget" data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}></div>
                         <button type="submit" id="submit-btn" class={cn(buttonVariants({ size: "lg" }), "w-full md:w-auto rounded-full")}>
                             Get My Estimate
                             <Send class="ml-2 h-4 w-4" />
@@ -204,7 +204,18 @@ const timelines = [
     </div>
 </div>
 
-<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script is:inline>
+    window.onCalculatorTurnstileLoad = function () {
+        const container = document.getElementById('calculator-turnstile-widget');
+        if (container && window.turnstile) {
+            const siteKey = container.getAttribute('data-sitekey');
+            window.calculatorTurnstileId = window.turnstile.render('#calculator-turnstile-widget', {
+                sitekey: siteKey,
+            });
+        }
+    };
+</script>
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onCalculatorTurnstileLoad" async defer></script>
 
 <script>
     // State
@@ -402,6 +413,10 @@ const timelines = [
             if (response.ok) {
                 currentStep = 4; // Success step
                 updateUI();
+                 // Reset Turnstile widget
+                if (window.turnstile && window.calculatorTurnstileId) {
+                    window.turnstile.reset(window.calculatorTurnstileId);
+                }
             } else {
                 const errorText = await response.text();
                 console.error('Webhook error response:', errorText);

@@ -72,7 +72,7 @@ import { cn } from "@/lib/utils";
     </div>
 
     <div class="space-y-2 flex justify-center md:justify-start">
-      <div class="cf-turnstile" data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}></div>
+      <div id="contact-turnstile-widget" data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}></div>
     </div>
 
     <button
@@ -100,11 +100,22 @@ import { cn } from "@/lib/utils";
   </button>
 </div>
 
-<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script is:inline>
+  window.onContactTurnstileLoad = function () {
+    const container = document.getElementById('contact-turnstile-widget');
+    if (container && window.turnstile) {
+      const siteKey = container.getAttribute('data-sitekey');
+      window.contactTurnstileId = window.turnstile.render('#contact-turnstile-widget', {
+        sitekey: siteKey,
+      });
+    }
+  };
+</script>
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onContactTurnstileLoad" async defer></script>
 
 <script>
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const form = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('submit-btn');
   const formContainer = document.getElementById('form-container');
   const successMessage = document.getElementById('success-message');
   const resetBtn = document.getElementById('reset-btn');
@@ -140,8 +151,10 @@ import { cn } from "@/lib/utils";
 
       if (response.ok) {
         form.reset();
-        // Reset Turnstile widget if needed, though we are hiding the form
-        if (window.turnstile) window.turnstile.reset();
+        // Reset Turnstile widget
+        if (window.turnstile && window.contactTurnstileId) {
+            window.turnstile.reset(window.contactTurnstileId);
+        }
         
         formContainer?.classList.add('hidden');
         successMessage?.classList.remove('hidden');
